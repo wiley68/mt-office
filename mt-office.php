@@ -50,4 +50,6 @@ require_once MT_OFFICE_INCLUDES_DIR . '/admin.php';
 add_action('plugins_loaded', function () {
 	// Load plugin translations.
 	mt_office_load_textdomain();
+	// Register admin menu and enqueue admin scripts.
+	add_action('admin_menu', 'mt_office_admin_actions');
 });

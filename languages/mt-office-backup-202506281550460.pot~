@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MT Office\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-06-28 15:50+0000\n"
+"POT-Creation-Date: 2025-06-28 15:26+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -29,26 +29,9 @@ msgid "https://avalonbg.com/maxtrade-office/"
 msgstr ""
 
 #. Name of the plugin
-#: includes/admin.php:21 includes/admin.php:22
 msgid "MT Office"
-msgstr ""
-
-#: includes/admin.php:33 includes/admin.php:34
-msgid "Settings"
-msgstr ""
-
-#: includes/admin.php:43 includes/admin.php:44
-msgid "Tasks"
-msgstr ""
-
-#: includes/admin.php:73
-msgid "The file mt_office_import_admin.php was not found!"
 msgstr ""
 
 #. Description of the plugin
 msgid "Utility for managing office activities in an e-store."
-msgstr ""
-
-#: includes/admin.php:65
-msgid "You do not have sufficient rights to access this page."
 msgstr ""

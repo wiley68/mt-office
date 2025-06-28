@@ -3,9 +3,9 @@ msgstr ""
 "Project-Id-Version: MT Office\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-06-28 15:26+0000\n"
-"PO-Revision-Date: 2025-06-28 15:27+0000\n"
+"PO-Revision-Date: 2025-06-28 15:51+0000\n"
 "Last-Translator: Администратор\n"
-"Language-Team: Bulgarian\n"
+"Language-Team: Български\n"
 "Language: bg_BG\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "MIME-Version: 1.0\n"
@@ -28,10 +28,27 @@ msgid "https://avalonbg.com/maxtrade-office/"
 msgstr "https://avalonbg.com/maxtrade-office/"
 
 #. Name of the plugin
+#: includes/admin.php:21 includes/admin.php:22
 msgid "MT Office"
 msgstr "MT Office"
+
+#: includes/admin.php:33 includes/admin.php:34
+msgid "Settings"
+msgstr "Настройки"
+
+#: includes/admin.php:43 includes/admin.php:44
+msgid "Tasks"
+msgstr "Задачи"
+
+#: includes/admin.php:73
+msgid "The file mt_office_import_admin.php was not found!"
+msgstr "Файлът mt_office_import_admin.php не е намерен!"
 
 #. Description of the plugin
 msgid "Utility for managing office activities in an e-store."
 msgstr ""
 "Помощна програма за управление на офисната дейност в електронен магазин"
+
+#: includes/admin.php:65
+msgid "You do not have sufficient rights to access this page."
+msgstr "Нямате достатъчни права за достъп до тази страница."
