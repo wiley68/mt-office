@@ -83,7 +83,39 @@ function mt_office_overview()
  */
 function mt_office()
 {
-    echo "Office";
+?>
+    <style>
+        #wpcontent {
+            margin-left: 0 !important;
+            padding: 0;
+        }
+
+        #wpadminbar,
+        #adminmenumain,
+        #adminmenuwrap,
+        #wpfooter,
+        .wrap>h1,
+        .notice {
+            display: none !important;
+        }
+
+        html,
+        body,
+        #vue-admin-app {
+            height: 100%;
+            margin: 0;
+        }
+
+        .mt-office-back-link {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            z-index: 9999;
+        }
+    </style>
+    <a href="<?php echo admin_url('admin.php?page=mt-office-settings'); ?>" class="button mt-office-back-link">⬅ <?php echo __('Обратно към MT Office', 'mt-office'); ?></a>
+    <div id="vue-admin-app"></div>
+<?php
 }
 
 /**
