@@ -23,8 +23,7 @@ function mt_office_add_meta_admin($hook)
     }
 
     if ($hook === 'mt-office_page_mt-office') {
-        wp_enqueue_script('mt-office-js', plugins_url('dist/spa/assets/index.js', __FILE__), array(), MT_OFFICE_VERSION, true);
-        wp_enqueue_style('mt-office-css', plugins_url('dist/spa/assets/index.css', __FILE__), array(), MT_OFFICE_VERSION);
+        wp_enqueue_script('mt-office-js', plugins_url('../quasar-office/dist/spa/assets/index.js', __FILE__), array(), MT_OFFICE_VERSION, true);
 
         wp_localize_script('mt-office', 'mt_office_rest', array(
             'root'  => esc_url_raw(rest_url()),

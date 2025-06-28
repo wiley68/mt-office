@@ -114,7 +114,7 @@ function mt_office()
         }
     </style>
     <a href="<?php echo admin_url('admin.php?page=mt-office-settings'); ?>" class="button mt-office-back-link">⬅ <?php echo __('Обратно към MT Office', 'mt-office'); ?></a>
-    <div id="vue-admin-app"></div>
+    <div id=q-app></div>
 <?php
 }
 
