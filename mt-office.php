@@ -3,7 +3,7 @@
 /**
  * Plugin Name:       MT Office
  * Plugin URI:        https://avalonbg.com/maxtrade-office/
- * Description:       Office application.
+ * Description:       Utility for managing office activities in an e-store.
  * Version:           1.0.0
  * Author:            Avalon Ltd.
  * Author URI:        https://avalonbg.com
