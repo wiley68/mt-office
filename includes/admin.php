@@ -21,31 +21,69 @@ function mt_office_admin_actions()
         __('MT Office', 'mt-office'),
         __('MT Office', 'mt-office'),
         'manage_options',
-        'mt-office-tasks',
-        'mt_office_tasks',
+        'mt-office-overview',
+        'mt_office_overview',
         'dashicons-admin-generic',
         60
     );
 
+    // Submenu: Overview
+    add_submenu_page(
+        'mt-office-overview',
+        __('Overview', 'mt-office'),
+        __('Overview', 'mt-office'),
+        'manage_options',
+        'mt-office-overview',
+        'mt_office_overview'
+    );
+
     // Submenu: Tasks Application (SPA)
     add_submenu_page(
-        'mt-office-tasks',
-        __('Tasks', 'mt-office'),
-        __('Tasks', 'mt-office'),
+        'mt-office-overview',
+        __('Office', 'mt-office'),
+        __('Office', 'mt-office'),
         'manage_options',
-        'mt-office-tasks',
-        'mt_office_tasks'
+        'mt-office',
+        'mt_office'
     );
 
     // Submenu: Settings (duplicates the main one)
     add_submenu_page(
-        'mt-office-tasks',
+        'mt-office-overview',
         __('Settings', 'mt-office'),
         __('Settings', 'mt-office'),
         'manage_options',
         'mt-office-settings',
         'mt_office_admin_options'
     );
+}
+
+/**
+ * Display plugin overview page content.
+ *
+ * Checks user capabilities before displaying the interface.
+ *
+ * @since 1.0.0
+ *
+ * @return void
+ */
+function mt_office_overview()
+{
+    echo "Overview";
+}
+
+/**
+ * Display plugin tasks page content.
+ *
+ * Checks user capabilities before displaying the interface.
+ *
+ * @since 1.0.0
+ *
+ * @return void
+ */
+function mt_office()
+{
+    echo "Office";
 }
 
 /**
@@ -72,18 +110,4 @@ function mt_office_admin_options()
     } else {
         echo '<div class="error"><p>' . esc_html__('The file mt_office_import_admin.php was not found!', 'mt-office') . '</p></div>';
     }
-}
-
-/**
- * Display plugin tasks page content.
- *
- * Checks user capabilities before displaying the interface.
- *
- * @since 1.0.0
- *
- * @return void
- */
-function mt_office_tasks()
-{
-    echo "Tasks";
 }

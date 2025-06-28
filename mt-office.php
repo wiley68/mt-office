@@ -52,4 +52,5 @@ add_action('plugins_loaded', function () {
 	mt_office_load_textdomain();
 	// Register admin menu and enqueue admin scripts.
 	add_action('admin_menu', 'mt_office_admin_actions');
+	add_action('admin_enqueue_scripts', 'mt_office_add_meta_admin');
 });

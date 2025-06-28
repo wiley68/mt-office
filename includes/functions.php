@@ -16,3 +16,22 @@ function mt_office_load_textdomain()
     $mofile = 'mt-office' . '-' . $locale . '.mo';
     load_textdomain('mt-office', MT_OFFICE_PLUGIN_DIR . '/languages/' . $mofile);
 }
+
+function mt_office_add_meta_admin($hook)
+{
+    if ($hook === 'toplevel_page_mt_office_overview') {
+    }
+
+    if ($hook === 'mt-office_page_mt-office') {
+        wp_enqueue_script('mt-office-js', plugins_url('dist/spa/assets/index.js', __FILE__), array(), MT_OFFICE_VERSION, true);
+        wp_enqueue_style('mt-office-css', plugins_url('dist/spa/assets/index.css', __FILE__), array(), MT_OFFICE_VERSION);
+
+        wp_localize_script('mt-office', 'mt_office_rest', array(
+            'root'  => esc_url_raw(rest_url()),
+            'nonce' => wp_create_nonce('mt_office_rest')
+        ));
+    }
+
+    if ($hook === 'mt-office_page_mt-office-settings') {
+    }
+}
