@@ -22,9 +22,9 @@ function mt_office_add_meta_admin($hook)
     if ($hook === 'toplevel_page_mt-office-overview') {
         wp_enqueue_style(
             'mt-office-css',
-            MT_OFFICE_CSS_URI . '/mt-office.css',
+            MT_OFFICE_CSS_URI . '/mt-office-overview.css',
             array(),
-            filemtime(MT_OFFICE_PLUGIN_DIR . '/css/mt-office.css'),
+            filemtime(MT_OFFICE_PLUGIN_DIR . '/css/mt-office-overview.css'),
             'all'
         );
     }

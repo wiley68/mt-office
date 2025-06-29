@@ -15,11 +15,9 @@
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
-    "tailwinddev": "npx @tailwindcss/cli -i ./src/assets/css/style.css -o ./css/mt-office.css",
-    "tailwindcss": "npx @tailwindcss/cli -i ./src/assets/css/style.css -o ./css/mt-office.css --minify"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "dependencies": {
-    "@tailwindcss/cli": "^4.1.11",
-    "tailwindcss": "^4.1.11"
+  "devDependencies": {
+    "tailwindcss": "^3.3.5"
   }
 }

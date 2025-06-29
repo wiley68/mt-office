@@ -1,329 +1,167 @@
-/*! tailwindcss v4.1.11 | MIT License | https://tailwindcss.com */
 @import url('https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap');
-@layer theme, base, components, utilities;
-@layer theme {
-  :root,
-  :host {
-    --font-sans: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
-      'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-    --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-      'Liberation Mono', 'Courier New', monospace;
-    --color-red-600: oklch(57.7% 0.245 27.325);
-    --color-white: #fff;
-    --default-font-family: var(--font-sans);
-    --default-mono-font-family: var(--font-mono);
-  }
+
+.mt_office_container {
+  display: flex !important;
+  flex-direction: column !important;
+  -webkit-box-sizing: border-box !important;
+  -moz-box-sizing: border-box !important;
+  box-sizing: border-box !important;
+  padding: 0px !important;
+  margin: 20px 20px 0px 0px !important;
+  gap: 15px !important;
 }
-@layer base {
-  *,
-  ::after,
-  ::before,
-  ::backdrop,
-  ::file-selector-button {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    border: 0 solid;
-  }
-  html,
-  :host {
-    line-height: 1.5;
-    -webkit-text-size-adjust: 100%;
-    tab-size: 4;
-    font-family: var(
-      --default-font-family,
-      ui-sans-serif,
-      system-ui,
-      sans-serif,
-      'Apple Color Emoji',
-      'Segoe UI Emoji',
-      'Segoe UI Symbol',
-      'Noto Color Emoji'
-    );
-    font-feature-settings: var(--default-font-feature-settings, normal);
-    font-variation-settings: var(--default-font-variation-settings, normal);
-    -webkit-tap-highlight-color: transparent;
-  }
-  hr {
-    height: 0;
-    color: inherit;
-    border-top-width: 1px;
-  }
-  abbr:where([title]) {
-    -webkit-text-decoration: underline dotted;
-    text-decoration: underline dotted;
-  }
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    font-size: inherit;
-    font-weight: inherit;
-  }
-  a {
-    color: inherit;
-    -webkit-text-decoration: inherit;
-    text-decoration: inherit;
-  }
-  b,
-  strong {
-    font-weight: bolder;
-  }
-  code,
-  kbd,
-  samp,
-  pre {
-    font-family: var(
-      --default-mono-font-family,
-      ui-monospace,
-      SFMono-Regular,
-      Menlo,
-      Monaco,
-      Consolas,
-      'Liberation Mono',
-      'Courier New',
-      monospace
-    );
-    font-feature-settings: var(--default-mono-font-feature-settings, normal);
-    font-variation-settings: var(
-      --default-mono-font-variation-settings,
-      normal
-    );
-    font-size: 1em;
-  }
-  small {
-    font-size: 80%;
-  }
-  sub,
-  sup {
-    font-size: 75%;
-    line-height: 0;
-    position: relative;
-    vertical-align: baseline;
-  }
-  sub {
-    bottom: -0.25em;
-  }
-  sup {
-    top: -0.5em;
-  }
-  table {
-    text-indent: 0;
-    border-color: inherit;
-    border-collapse: collapse;
-  }
-  :-moz-focusring {
-    outline: auto;
-  }
-  progress {
-    vertical-align: baseline;
-  }
-  summary {
-    display: list-item;
-  }
-  ol,
-  ul,
-  menu {
-    list-style: none;
-  }
-  img,
-  svg,
-  video,
-  canvas,
-  audio,
-  iframe,
-  embed,
-  object {
-    display: block;
-    vertical-align: middle;
-  }
-  img,
-  video {
-    max-width: 100%;
-    height: auto;
-  }
-  button,
-  input,
-  select,
-  optgroup,
-  textarea,
-  ::file-selector-button {
-    font: inherit;
-    font-feature-settings: inherit;
-    font-variation-settings: inherit;
-    letter-spacing: inherit;
-    color: inherit;
-    border-radius: 0;
-    background-color: transparent;
-    opacity: 1;
-  }
-  :where(select:is([multiple], [size])) optgroup {
-    font-weight: bolder;
-  }
-  :where(select:is([multiple], [size])) optgroup option {
-    padding-inline-start: 20px;
-  }
-  ::file-selector-button {
-    margin-inline-end: 4px;
-  }
-  ::placeholder {
-    opacity: 1;
-  }
-  @supports (not (-webkit-appearance: -apple-pay-button)) or
-    (contain-intrinsic-size: 1px) {
-    ::placeholder {
-      color: currentcolor;
-      @supports (color: color-mix(in lab, red, red)) {
-        color: color-mix(in oklab, currentcolor 50%, transparent);
-      }
-    }
-  }
-  textarea {
-    resize: vertical;
-  }
-  ::-webkit-search-decoration {
-    -webkit-appearance: none;
-  }
-  ::-webkit-date-and-time-value {
-    min-height: 1lh;
-    text-align: inherit;
-  }
-  ::-webkit-datetime-edit {
-    display: inline-flex;
-  }
-  ::-webkit-datetime-edit-fields-wrapper {
-    padding: 0;
-  }
-  ::-webkit-datetime-edit,
-  ::-webkit-datetime-edit-year-field,
-  ::-webkit-datetime-edit-month-field,
-  ::-webkit-datetime-edit-day-field,
-  ::-webkit-datetime-edit-hour-field,
-  ::-webkit-datetime-edit-minute-field,
-  ::-webkit-datetime-edit-second-field,
-  ::-webkit-datetime-edit-millisecond-field,
-  ::-webkit-datetime-edit-meridiem-field {
-    padding-block: 0;
-  }
-  :-moz-ui-invalid {
-    box-shadow: none;
-  }
-  button,
-  input:where([type='button'], [type='reset'], [type='submit']),
-  ::file-selector-button {
-    appearance: button;
-  }
-  ::-webkit-inner-spin-button,
-  ::-webkit-outer-spin-button {
-    height: auto;
-  }
-  [hidden]:where(:not([hidden='until-found'])) {
-    display: none !important;
-  }
+.mt_office_container,
+.mt_office_container * {
+  font-family: 'Exo 2', sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
 }
-@layer utilities {
-  .relative {
-    position: relative;
-  }
-  .flex {
-    display: flex;
-  }
-  .text-center {
-    text-align: center;
-  }
-  .text-red-600 {
-    color: var(--color-red-600);
-  }
-  .text-white {
-    color: var(--color-white);
-  }
+.mt_office_page_header {
+  position: -webkit-sticky !important; /* Safari */
+  position: sticky !important;
+  top: 30px !important;
+  z-index: 1000 !important;
+  background-color: #f0f0f1 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  -webkit-box-sizing: border-box !important;
+  -moz-box-sizing: border-box !important;
+  box-sizing: border-box !important;
+  height: 52px !important;
+  border: 1px solid #d4d4d4 !important;
+  -webkit-box-shadow: 0px 2px 34px 0px rgba(39, 52, 125, 0.1) !important;
+  box-shadow: 0px 2px 34px 0px rgba(39, 52, 125, 0.1) !important;
+  padding: 12px 15px !important;
+  font-size: 22px !important;
+  font-weight: 600 !important;
+  margin-bottom: 15px !important;
 }
-body.body--light {
-  scrollbar-width: thin;
-  scrollbar-color: #e0e0e0 #f7f7f7;
+.mt_office_row {
+  display: flex !important;
+  -webkit-box-sizing: border-box !important;
+  -moz-box-sizing: border-box !important;
+  box-sizing: border-box !important;
+  gap: 15px !important;
 }
-body.body--dark {
-  scrollbar-width: thin;
-  scrollbar-color: #525252 #3d3d3d;
+.mt_office_panel {
+  display: flex !important;
+  flex-direction: column !important;
+  -webkit-box-sizing: border-box !important;
+  -moz-box-sizing: border-box !important;
+  box-sizing: border-box !important;
+  flex: 1 !important;
+  padding: 0px !important;
+  gap: 0px !important;
+  -webkit-box-shadow: 0px 2px 34px 0px rgba(39, 52, 125, 0.1) !important;
+  box-shadow: 0px 2px 34px 0px rgba(39, 52, 125, 0.1) !important;
 }
-body.body--light {
-  color: #292929;
-  background: #f0f0f0;
+.mt_office_panel_heading {
+  display: flex !important;
+  -webkit-box-sizing: border-box !important;
+  -moz-box-sizing: border-box !important;
+  box-sizing: border-box !important;
+  color: #4c4d5a !important;
+  border: 1px solid #dcdcdc !important;
+  background: #f5f5f5 !important;
+  padding: 12px 15px !important;
+  border-bottom: 1px solid transparent !important;
+  border-top-right-radius: 2px !important;
+  border-top-left-radius: 2px !important;
+  font-size: 18px !important;
 }
-body.body--dark {
-  color: #f2f2f2;
-  background: #2b2b2b;
-  --q-color-secondary: #4db6ac;
-  --q-color-accent: #fdcc0d;
-  --q-color-positive: #21ba45;
-  --q-color-negative: #d44d5b;
-  --q-color-info: #00a4d8;
-  --q-color-warning: #f2c037;
+.mt_office_panel_body {
+  display: flex !important;
+  -webkit-box-sizing: border-box !important;
+  -moz-box-sizing: border-box !important;
+  box-sizing: border-box !important;
+  flex-direction: column !important;
+  background: #fff !important;
+  border: 1px solid #dcdcdc !important;
 }
-.q-dark,
-body.body--dark {
-  color: #fff;
+.mt_office_panel_footer {
+  display: flex !important;
+  -webkit-box-sizing: border-box !important;
+  -moz-box-sizing: border-box !important;
+  box-sizing: border-box !important;
+  align-items: center !important;
+  justify-content: end !important;
+  color: #4c4d5a !important;
+  border: 1px solid #dcdcdc !important;
+  background: #f5f5f5 !important;
+  padding: 12px 15px !important;
+  border-top: 1px solid transparent !important;
+  border-bottom-right-radius: 2px !important;
+  border-bottom-left-radius: 2px !important;
 }
-body {
-  min-width: 100px;
-  min-height: 100%;
-  font-family: 'Exo 2', sans-serif;
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  line-height: 1.5;
-  font-size: 16px;
+.mt_office_form_group {
+  display: flex !important;
+  -webkit-box-sizing: border-box !important;
+  -moz-box-sizing: border-box !important;
+  box-sizing: border-box !important;
+  align-items: center !important;
+  padding: 15px !important;
+  gap: 30px !important;
+  border: 1px solid #e5e5e5 !important;
+  border-top: 1px solid transparent !important;
+  border-right: 1px solid transparent !important;
+  border-left: 1px solid transparent !important;
 }
-body,
-html {
-  margin: 0;
-  box-sizing: border-box;
-  width: 100%;
-  direction: ltr;
-  display: block;
+.mt_office_form_group:last-child {
+  border: 1px solid transparent !important;
 }
-*,
-:after,
-:before {
-  box-sizing: inherit;
-  -webkit-tap-highlight-color: transparent;
-  -moz-tap-highlight-color: transparent;
+.mt_office_control_label {
+  display: flex !important;
+  -webkit-box-sizing: border-box !important;
+  -moz-box-sizing: border-box !important;
+  box-sizing: border-box !important;
+  align-items: center !important;
+  justify-content: end !important;
+  flex: 1 !important;
 }
-::-webkit-scrollbar {
-  width: 12px;
+.mt_office_control {
+  display: flex !important;
+  flex-direction: column !important;
+  -webkit-box-sizing: border-box !important;
+  -moz-box-sizing: border-box !important;
+  box-sizing: border-box !important;
+  align-items: start !important;
+  flex: 2 !important;
 }
-body.body--light::-webkit-scrollbar-thumb,
-body.body--light ::-webkit-scrollbar-thumb {
-  background: #e0e0e0;
-  border: 2px solid #f7f7f7;
-  border-radius: 7px;
+.mt_office_form_control {
+  min-width: 100% !important;
 }
-body.body--dark::-webkit-scrollbar-thumb,
-body.body--dark ::-webkit-scrollbar-thumb {
-  background: #525252;
-  border: 2px solid #3d3d3d;
-  border-radius: 7px;
+.mt_office_form_controll_text {
+  font-size: 12px !important;
 }
-body.body--light::-webkit-scrollbar-track,
-body.body--light ::-webkit-scrollbar-track {
-  background: #f7f7f7;
+.mt_office_flex {
+  width: 100% !important;
+  display: flex !important;
+  flex-direction: row !important;
 }
-body.body--dark::-webkit-scrollbar-thumb:hover,
-body.body--dark ::-webkit-scrollbar-thumb:hover {
-  background: #5c5c5c;
+.mt_office_col {
+  flex: 1 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  -webkit-box-sizing: border-box !important;
+  -moz-box-sizing: border-box !important;
+  box-sizing: border-box !important;
+  justify-content: center !important;
+  padding: 5px !important;
 }
-body.body--dark::-webkit-scrollbar-track,
-body.body--dark ::-webkit-scrollbar-track {
-  background: #3d3d3d;
+.mt_office_div_label {
+  font-size: 14px !important;
+  padding: 5px !important;
+  height: 100px !important;
 }
-body .wp-site-blocks {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 100%;
-  min-height: 911px;
-  margin: 0 auto;
+.mt_office_col_info {
+  user-select: none !important;
+  -moz-user-select: none !important;
+  -khtml-user-select: none !important;
+  -webkit-user-select: none !important;
+  -o-user-select: none !important;
+  border: 1px solid #d4d4d4 !important;
+  padding: 5px !important;
+  border-radius: 4px !important;
+  background: #e5e5e5 !important;
 }

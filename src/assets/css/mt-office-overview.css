@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.mt_office_container {
+  display: flex !important;
+  flex-direction: column !important;
+  -webkit-box-sizing: border-box !important;
+  -moz-box-sizing: border-box !important;
+  box-sizing: border-box !important;
+  padding: 0px !important;
+  margin: 20px 20px 0px 0px !important;
+  gap: 15px !important;
+  height: calc(100vh - 160px) !important;
+}
+
+.mt_office_container,
+.mt_office_container * {
+  font-family: 'Exo 2', sans-serif !important;
+}
