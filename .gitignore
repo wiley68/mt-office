@@ -1,1 +1,19 @@
 *.po~
+# Dependency directories
+node_modules/
+# dotenv environment variables file
+.env
+# Optional eslint cache
+.eslintcache
+# Optional npm cache directory
+.npm
+# Compiled binary addons (https://nodejs.org/api/addons.html)
+build/
+# Coverage directory used by tools like istanbul
+coverage
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

@@ -69,7 +69,9 @@ function mt_office_admin_actions()
  */
 function mt_office_overview()
 {
-    echo "Overview";
+?>
+    <h1 class="text-red-600">Overview</h1>
+<?php
 }
 
 /**

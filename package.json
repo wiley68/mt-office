@@ -1,0 +1,25 @@
+{
+  "name": "mt-office",
+  "version": "1.0.0",
+  "description": "Utility for managing office activities in an e-store.",
+  "homepage": "https://github.com/wiley68/mt-office#readme",
+  "bugs": {
+    "url": "https://github.com/wiley68/mt-office/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wiley68/mt-office.git"
+  },
+  "license": "GPL-3.0-or-later",
+  "author": "Avalon Ltd.",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "tailwinddev": "npx @tailwindcss/cli -i ./src/assets/css/style.css -o ./css/mt-office.css",
+    "tailwindcss": "npx @tailwindcss/cli -i ./src/assets/css/style.css -o ./css/mt-office.css --minify"
+  },
+  "dependencies": {
+    "@tailwindcss/cli": "^4.1.11",
+    "tailwindcss": "^4.1.11"
+  }
+}

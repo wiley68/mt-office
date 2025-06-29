@@ -19,16 +19,33 @@ function mt_office_load_textdomain()
 
 function mt_office_add_meta_admin($hook)
 {
-    if ($hook === 'toplevel_page_mt_office_overview') {
+    if ($hook === 'toplevel_page_mt-office-overview') {
+        wp_enqueue_style(
+            'mt-office-css',
+            MT_OFFICE_CSS_URI . '/mt-office.css',
+            array(),
+            filemtime(MT_OFFICE_PLUGIN_DIR . '/css/mt-office.css'),
+            'all'
+        );
     }
 
     if ($hook === 'mt-office_page_mt-office') {
-        wp_enqueue_script('mt-office-js', plugins_url('../quasar-office/dist/spa/assets/index.js', __FILE__), array(), MT_OFFICE_VERSION, true);
+        wp_enqueue_script(
+            'mt-office-script',
+            plugins_url('../quasar-office/dist/spa/assets/index.js', __FILE__),
+            array(),
+            filemtime(get_theme_file_path('../quasar-office/dist/spa/assets/index.js')),
+            true
+        );
 
-        wp_localize_script('mt-office', 'mt_office_rest', array(
-            'root'  => esc_url_raw(rest_url()),
-            'nonce' => wp_create_nonce('mt_office_rest')
-        ));
+        wp_localize_script(
+            'mt-office',
+            'mt_office_rest',
+            array(
+                'root'  => esc_url_raw(rest_url()),
+                'nonce' => wp_create_nonce('mt_office_rest')
+            )
+        );
     }
 
     if ($hook === 'mt-office_page_mt-office-settings') {
