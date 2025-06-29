@@ -1,11 +1,51 @@
 <template>
-  <q-page class="flex flex-center">
-    <img
-      alt="Quasar logo"
-      src="~assets/quasar-logo-vertical.svg"
-      style="width: 200px; height: 200px"
-    >
-  </q-page>
+  <div
+    class="column q-px-sm q-gutter-y-sm bg-pink-6 no-wrap"
+    style="height: calc(100vh - 75px); overflow-y: auto"
+  >
+    <div>Avalon</div>
+    <div>Avalon</div>
+    <div>Avalon</div>
+    <div>Avalon</div>
+    <div>Avalon</div>
+    <div>Avalon</div>
+    <div>Avalon</div>
+    <div>Avalon</div>
+    <div>Avalon</div>
+    <div>Avalon</div>
+    <div>Avalon</div>
+    <div>Avalon</div>
+    <div>Avalon</div>
+    <div>Avalon</div>
+    <div>Avalon</div>
+    <div>Avalon</div>
+    <div>Avalon</div>
+    <div>Avalon</div>
+    <div>Avalon</div>
+    <div>Avalon</div>
+    <div>Avalon</div>
+    <div>Avalon</div>
+    <div>Avalon</div>
+    <div>Avalon</div>
+    <div>Avalon</div>
+    <div>Avalon</div>
+    <div>Avalon</div>
+    <div>Avalon</div>
+    <div>Avalon</div>
+    <div>Avalon</div>
+    <div>Avalon</div>
+    <div>Avalon</div>
+    <div>Avalon</div>
+    <div>Avalon</div>
+    <div>Avalon</div>
+    <div>Avalon</div>
+    <div>Avalon</div>
+    <div>Avalon</div>
+    <div>Avalon</div>
+    <div>Avalon</div>
+    <div>Avalon</div>
+    <div>Avalon</div>
+  </div>
 </template>
 
 <script setup>

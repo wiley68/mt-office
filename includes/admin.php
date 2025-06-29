@@ -167,35 +167,66 @@ function mt_office()
 {
 ?>
     <style>
-        #wpcontent {
-            margin-left: 0 !important;
-            padding: 0;
+        body {
+            height: 100vh !important;
+            width: 100% !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            background-color: brown;
+            overflow: hidden;
         }
 
-        #wpadminbar,
+        #wpwrap {
+            height: 100% !important;
+            width: 100% !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            background-color: blueviolet;
+            overflow: hidden;
+        }
+
         #adminmenumain,
-        #adminmenuwrap,
-        #wpfooter,
-        .wrap>h1,
-        .notice {
+        #wpadminbar,
+        #screen-meta {
             display: none !important;
         }
 
-        html,
-        body,
-        #vue-admin-app {
-            height: 100%;
-            margin: 0;
+        #wpcontent {
+            height: 100% !important;
+            width: 100% !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            background-color: aqua;
+            overflow: hidden;
         }
 
-        .mt-office-back-link {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            z-index: 9999;
+        #wpbody {
+            height: 100% !important;
+            width: 100% !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            background-color: burlywood;
+            overflow: hidden;
+        }
+
+        #wpbody-content {
+            height: 100% !important;
+            width: 100% !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            background-color: chartreuse;
+            overflow: hidden;
+        }
+
+        #q-app {
+            height: 100% !important;
+            width: 100% !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            background-color: aquamarine;
+            overflow: hidden;
         }
     </style>
-    <a href="<?php echo admin_url('admin.php?page=mt-office-overview'); ?>" class="button mt-office-back-link">⬅ <?php echo __('Back to MT Office', 'mt-office'); ?></a>
     <div id=q-app></div>
 <?php
 }
