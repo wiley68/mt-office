@@ -33,6 +33,7 @@ define('MT_OFFICE_PLUGIN_DIR', untrailingslashit(dirname(__FILE__)));
 define('MT_OFFICE_INCLUDES_DIR', MT_OFFICE_PLUGIN_DIR . '/includes');
 define('MT_OFFICE_CSS_URI', WP_CONTENT_URL . '/plugins/mt-office/css');
 define('MT_OFFICE_JS_URI', WP_CONTENT_URL . '/plugins/mt-office/js');
+define('MT_OFFICE_IMAGES_URI', WP_CONTENT_URL . '/plugins/mt-office/images');
 define('MT_OFFICE_VERSION', '1.0.0');
 
 /**

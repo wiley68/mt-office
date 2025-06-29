@@ -1,0 +1,54 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: MT Office\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-06-28 15:50+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: \n"
+"Language: \n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.8.0; wp-6.8.1; php-8.2.27\n"
+"X-Domain: mt-office"
+
+#. Author of the plugin
+msgid "Avalon Ltd."
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://avalonbg.com"
+msgstr ""
+
+#. URI of the plugin
+msgid "https://avalonbg.com/maxtrade-office/"
+msgstr ""
+
+#. Name of the plugin
+#: includes/admin.php:21 includes/admin.php:22
+msgid "MT Office"
+msgstr ""
+
+#: includes/admin.php:33 includes/admin.php:34
+msgid "Settings"
+msgstr ""
+
+#: includes/admin.php:43 includes/admin.php:44
+msgid "Tasks"
+msgstr ""
+
+#: includes/admin.php:73
+msgid "The file mt_office_import_admin.php was not found!"
+msgstr ""
+
+#. Description of the plugin
+msgid "Utility for managing office activities in an e-store."
+msgstr ""
+
+#: includes/admin.php:65
+msgid "You do not have sufficient rights to access this page."
+msgstr ""

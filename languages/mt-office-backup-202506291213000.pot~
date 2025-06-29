@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MT Office\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-06-29 12:15+0000\n"
+"POT-Creation-Date: 2025-06-29 12:09+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -27,10 +27,6 @@ msgstr ""
 #. Author of the plugin
 #: includes/admin.php:79 includes/admin.php:103
 msgid "Avalon Ltd."
-msgstr ""
-
-#: includes/admin.php:198
-msgid "Back to MT Office"
 msgstr ""
 
 #: includes/admin.php:92 includes/admin.php:118
@@ -92,14 +88,14 @@ msgid "The file mt_office_import_admin.php was not found!"
 msgstr ""
 
 #. Description of the plugin
-msgid "Utility for managing office activities in an e-store."
-msgstr ""
-
 #: includes/admin.php:141
-msgid ""
-"Utility for managing office activities in an WordPress/WooCommerce e-store."
+msgid "Utility for managing office activities in an e-store."
 msgstr ""
 
 #: includes/admin.php:217
 msgid "You do not have sufficient rights to access this page."
+msgstr ""
+
+#: includes/admin.php:198
+msgid "Обратно към MT Office"
 msgstr ""

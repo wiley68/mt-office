@@ -34,7 +34,7 @@ function mt_office_add_meta_admin($hook)
             'mt-office-script',
             plugins_url('../quasar-office/dist/spa/assets/index.js', __FILE__),
             array(),
-            filemtime(get_theme_file_path('../quasar-office/dist/spa/assets/index.js')),
+            filemtime(MT_OFFICE_PLUGIN_DIR . '/quasar-office/dist/spa/assets/index.js'),
             true
         );
 

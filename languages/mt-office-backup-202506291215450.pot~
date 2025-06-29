@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MT Office\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-06-29 12:15+0000\n"
+"POT-Creation-Date: 2025-06-29 12:12+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -92,12 +92,8 @@ msgid "The file mt_office_import_admin.php was not found!"
 msgstr ""
 
 #. Description of the plugin
-msgid "Utility for managing office activities in an e-store."
-msgstr ""
-
 #: includes/admin.php:141
-msgid ""
-"Utility for managing office activities in an WordPress/WooCommerce e-store."
+msgid "Utility for managing office activities in an e-store."
 msgstr ""
 
 #: includes/admin.php:217
