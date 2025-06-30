@@ -167,21 +167,24 @@ function mt_office()
 {
 ?>
     <style>
-        body {
+        body,
+        #wpwrap {
             height: 100vh !important;
             width: 100% !important;
             margin: 0 !important;
             padding: 0 !important;
-            background-color: brown;
             overflow: hidden;
         }
 
-        #wpwrap {
+        #wpwrap,
+        #wpcontent,
+        #wpbody,
+        #wpbody-content,
+        #q-app {
             height: 100% !important;
             width: 100% !important;
             margin: 0 !important;
             padding: 0 !important;
-            background-color: blueviolet;
             overflow: hidden;
         }
 
@@ -189,42 +192,6 @@ function mt_office()
         #wpadminbar,
         #screen-meta {
             display: none !important;
-        }
-
-        #wpcontent {
-            height: 100% !important;
-            width: 100% !important;
-            margin: 0 !important;
-            padding: 0 !important;
-            background-color: aqua;
-            overflow: hidden;
-        }
-
-        #wpbody {
-            height: 100% !important;
-            width: 100% !important;
-            margin: 0 !important;
-            padding: 0 !important;
-            background-color: burlywood;
-            overflow: hidden;
-        }
-
-        #wpbody-content {
-            height: 100% !important;
-            width: 100% !important;
-            margin: 0 !important;
-            padding: 0 !important;
-            background-color: chartreuse;
-            overflow: hidden;
-        }
-
-        #q-app {
-            height: 100% !important;
-            width: 100% !important;
-            margin: 0 !important;
-            padding: 0 !important;
-            background-color: aquamarine;
-            overflow: hidden;
         }
     </style>
     <div id=q-app></div>
