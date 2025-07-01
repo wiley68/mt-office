@@ -1,11 +1,8 @@
 <script setup>
 import { ref } from 'vue'
-import OverlayLoader from './../components/OverlayLoader.vue'
 
 const leftDrawerOpen = ref(false)
-const isExpandedUgoiavane = ref(false)
 const isExpandedNomenklature = ref(false)
-const isExpandedReport = ref(false)
 
 function toggleLeftDrawer() {
   leftDrawerOpen.value = !leftDrawerOpen.value
@@ -13,7 +10,6 @@ function toggleLeftDrawer() {
 </script>
 
 <template>
-  <OverlayLoader />
   <q-layout view="hHh lpR fFf">
     <q-header bordered class="bg-primary text-white select-none">
       <q-toolbar>
@@ -64,117 +60,6 @@ function toggleLeftDrawer() {
           </q-item-section>
           <q-item-section>Табло</q-item-section>
         </q-item>
-        <q-item
-          clickable
-          v-close-popup
-          :active="true"
-          class="text-primary"
-          active-class="bg-blue-1"
-        >
-          <q-item-section avatar>
-            <q-icon color="primary" name="mdi-view-dashboard-outline" />
-          </q-item-section>
-          <q-item-section>Табло</q-item-section>
-        </q-item>
-
-        <q-separator />
-
-        <q-item
-          clickable
-          v-close-popup
-          class="text-primary"
-          active-class="bg-blue-1"
-          :active="true"
-        >
-          <q-item-section avatar>
-            <q-icon color="primary" name="mdi-account-multiple-outline" />
-          </q-item-section>
-          <q-item-section>Потребители</q-item-section>
-        </q-item>
-
-        <q-separator />
-
-        <q-item
-          clickable
-          v-close-popup
-          class="text-primary"
-          active-class="bg-blue-1"
-          :active="true"
-        >
-          <q-item-section avatar>
-            <q-icon color="primary" name="mdi-account-group-outline" />
-          </q-item-section>
-          <q-item-section>Роли</q-item-section>
-        </q-item>
-
-        <q-separator />
-
-        <q-item
-          clickable
-          v-close-popup
-          class="text-primary"
-          active-class="bg-blue-1"
-          :active="true"
-        >
-          <q-item-section avatar>
-            <q-icon color="primary" name="mdi-shield-key-outline" />
-          </q-item-section>
-          <q-item-section>Права</q-item-section>
-        </q-item>
-
-        <q-separator />
-
-        <q-expansion-item
-          v-model="isExpandedMothers"
-          group="mothers"
-          icon="mdi-home-import-outline"
-          label="Майки"
-          expand-icon-class="text-primary"
-          header-class="text-primary"
-        >
-          <q-item clickable class="text-secondary" active-class="bg-blue-1" :active="true">
-            <q-item-section avatar>
-              <q-icon color="secondary" name="mdi-barn" />
-            </q-item-section>
-            <q-item-section>Халета Майки</q-item-section>
-          </q-item>
-
-          <q-separator />
-
-          <q-item clickable class="text-secondary" active-class="bg-blue-1" :active="true">
-            <q-item-section avatar>
-              <q-icon color="secondary" name="mdi-timer-play-outline" />
-            </q-item-section>
-            <q-item-section>Процеси Майки</q-item-section>
-          </q-item>
-        </q-expansion-item>
-
-        <q-separator />
-
-        <q-expansion-item
-          v-model="isExpandedUgoiavane"
-          group="ugoiavane"
-          icon="mdi-home-export-outline"
-          label="Угояване"
-          expand-icon-class="text-primary"
-          header-class="text-primary"
-        >
-          <q-item clickable class="text-secondary" active-class="bg-blue-1" :active="true">
-            <q-item-section avatar>
-              <q-icon color="secondary" name="mdi-barn" />
-            </q-item-section>
-            <q-item-section>Халета Угояване</q-item-section>
-          </q-item>
-
-          <q-separator />
-
-          <q-item clickable class="text-secondary" active-class="bg-blue-1" :active="true">
-            <q-item-section avatar>
-              <q-icon color="secondary" name="mdi-timer-play-outline" />
-            </q-item-section>
-            <q-item-section>Процеси Угояване</q-item-section>
-          </q-item>
-        </q-expansion-item>
 
         <q-separator />
 
@@ -192,87 +77,6 @@ function toggleLeftDrawer() {
             </q-item-section>
             <q-item-section>Населени места</q-item-section>
           </q-item>
-
-          <q-separator />
-
-          <q-item clickable class="text-secondary" active-class="bg-blue-1" :active="true">
-            <q-item-section avatar>
-              <q-icon color="secondary" name="mdi-factory" />
-            </q-item-section>
-            <q-item-section>Производствени Бази</q-item-section>
-          </q-item>
-
-          <q-separator />
-
-          <q-item clickable class="text-secondary" active-class="bg-blue-1" :active="true">
-            <q-item-section avatar>
-              <q-icon color="secondary" name="mdi-silo-outline" />
-            </q-item-section>
-            <q-item-section>Силози</q-item-section>
-          </q-item>
-
-          <q-separator />
-
-          <q-item clickable class="text-secondary" active-class="bg-blue-1" :active="true">
-            <q-item-section avatar>
-              <q-icon color="secondary" name="mdi-barn" />
-            </q-item-section>
-            <q-item-section>Халета за майки</q-item-section>
-          </q-item>
-
-          <q-separator />
-
-          <q-item clickable class="text-secondary" active-class="bg-blue-1" :active="true">
-            <q-item-section avatar>
-              <q-icon color="secondary" name="mdi-barn" />
-            </q-item-section>
-            <q-item-section>Халета за угояване</q-item-section>
-          </q-item>
-
-          <q-separator />
-
-          <q-item clickable class="text-secondary" active-class="bg-blue-1" :active="true">
-            <q-item-section avatar>
-              <q-icon color="secondary" name="mdi-package-variant-closed" />
-            </q-item-section>
-            <q-item-section>Продукти</q-item-section>
-          </q-item>
-        </q-expansion-item>
-
-        <q-separator />
-
-        <q-item clickable class="text-primary" active-class="bg-blue-1" :active="true">
-          <q-item-section avatar>
-            <q-icon color="primary" name="mdi-truck-delivery-outline" />
-          </q-item-section>
-          <q-item-section>Доставки</q-item-section>
-        </q-item>
-
-        <q-separator />
-
-        <q-item clickable class="text-primary" active-class="bg-blue-1" :active="true">
-          <q-item-section avatar>
-            <q-icon color="primary" name="mdi-store-outline" />
-          </q-item-section>
-          <q-item-section>Наличности</q-item-section>
-        </q-item>
-
-        <q-separator />
-
-        <q-expansion-item
-          v-model="isExpandedReport"
-          group="report"
-          icon="mdi-chart-bar"
-          label="Справки"
-          expand-icon-class="text-primary"
-          header-class="text-primary"
-        >
-          <q-item clickable class="text-secondary" active-class="bg-blue-1" :active="true">
-            <q-item-section avatar>
-              <q-icon color="secondary" name="mdi-timer-play-outline" />
-            </q-item-section>
-            <q-item-section>Производствени процеси</q-item-section>
-          </q-item>
         </q-expansion-item>
 
         <q-separator />
@@ -281,11 +85,16 @@ function toggleLeftDrawer() {
 
         <q-separator />
 
-        <q-item clickable v-close-popup class="text-negative">
+        <q-item
+          clickable
+          tag="a"
+          href="/wp-admin/admin.php?page=mt-office-overview"
+          class="text-negative"
+        >
           <q-item-section avatar>
             <q-icon color="negative" name="close" />
           </q-item-section>
-          <q-item-section>Изход</q-item-section>
+          <q-item-section>Back to Overview</q-item-section>
         </q-item>
       </q-list>
     </q-drawer>
