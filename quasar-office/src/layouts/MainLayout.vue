@@ -1,6 +1,11 @@
 <script setup>
 import { ref } from 'vue'
 
+defineProps({
+  title: String,
+  icon: String,
+})
+
 const leftDrawerOpen = ref(false)
 const isExpandedNomenklature = ref(false)
 
@@ -18,7 +23,7 @@ function toggleLeftDrawer() {
         <q-separator dark vertical inset />
 
         <q-toolbar-title style="flex: none">
-          <q-icon name="mdi-pig-variant-outline" size="md"></q-icon>
+          <q-icon name="mdi-at" size="md"></q-icon>
           Авалон
         </q-toolbar-title>
 
@@ -99,8 +104,8 @@ function toggleLeftDrawer() {
       </q-list>
     </q-drawer>
 
-    <q-page-container>
-      <slot></slot>
+    <q-page-container style="padding-top: 28px; padding-left: 300px; padding-bottom: 31px">
+      <router-view></router-view>
     </q-page-container>
 
     <q-footer bordered class="bg-grey-2 text-grey-10 q-custom-toolbar">
@@ -125,12 +130,6 @@ function toggleLeftDrawer() {
 .text-title {
   max-width: max-content;
   white-space: nowrap;
-}
-
-.page-container {
-  display: flex;
-  flex-direction: column;
-  height: calc(100vh - 82px);
 }
 
 .body-panel {

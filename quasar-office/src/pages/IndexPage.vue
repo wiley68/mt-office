@@ -1,50 +1,11 @@
 <template>
   <div
-    class="column q-px-sm q-gutter-y-sm bg-pink-6 no-wrap"
-    style="height: calc(100vh - 75px); overflow-y: auto"
+    class="column justify-center items-center no-wrap"
+    style="height: calc(100vh - 84px); overflow-y: auto"
   >
-    <div>Avalon</div>
-    <div>Avalon</div>
-    <div>Avalon</div>
-    <div>Avalon</div>
-    <div>Avalon</div>
-    <div>Avalon</div>
-    <div>Avalon</div>
-    <div>Avalon</div>
-    <div>Avalon</div>
-    <div>Avalon</div>
-    <div>Avalon</div>
-    <div>Avalon</div>
-    <div>Avalon</div>
-    <div>Avalon</div>
-    <div>Avalon</div>
-    <div>Avalon</div>
-    <div>Avalon</div>
-    <div>Avalon</div>
-    <div>Avalon</div>
-    <div>Avalon</div>
-    <div>Avalon</div>
-    <div>Avalon</div>
-    <div>Avalon</div>
-    <div>Avalon</div>
-    <div>Avalon</div>
-    <div>Avalon</div>
-    <div>Avalon</div>
-    <div>Avalon</div>
-    <div>Avalon</div>
-    <div>Avalon</div>
-    <div>Avalon</div>
-    <div>Avalon</div>
-    <div>Avalon</div>
-    <div>Avalon</div>
-    <div>Avalon</div>
-    <div>Avalon</div>
-    <div>Avalon</div>
-    <div>Avalon</div>
-    <div>Avalon</div>
-    <div>Avalon</div>
-    <div>Avalon</div>
-    <div>Avalon</div>
+    <q-card class="my-card">
+      <q-card-section><h1>ТАБЛО</h1></q-card-section>
+    </q-card>
   </div>
 </template>
 
