@@ -39,11 +39,12 @@ function mt_office_add_meta_admin($hook)
         );
 
         wp_localize_script(
-            'mt-office',
+            'mt-office-script',
             'mt_office_rest',
             array(
                 'root'  => esc_url_raw(rest_url()),
-                'nonce' => wp_create_nonce('mt_office_rest')
+                'nonce' => wp_create_nonce('mt_office_rest'),
+                'siteName' => get_bloginfo('name'),
             )
         );
     }

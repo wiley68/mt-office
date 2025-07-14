@@ -1,17 +1,19 @@
 <script setup>
-import { ref } from 'vue'
-
-defineProps({
-  title: String,
-  icon: String,
-})
+import { onMounted, ref } from 'vue'
 
 const leftDrawerOpen = ref(false)
 const isExpandedNomenklature = ref(false)
+const wpSiteName = ref('')
 
 function toggleLeftDrawer() {
   leftDrawerOpen.value = !leftDrawerOpen.value
 }
+
+onMounted(() => {
+  if (typeof window.mt_office_rest !== 'undefined') {
+    wpSiteName.value = window.mt_office_rest.siteName
+  }
+})
 </script>
 
 <template>
@@ -22,16 +24,13 @@ function toggleLeftDrawer() {
 
         <q-separator dark vertical inset />
 
-        <q-toolbar-title style="flex: none">
-          <q-icon name="mdi-at" size="md"></q-icon>
-          Авалон
-        </q-toolbar-title>
+        <q-toolbar-title style="flex: none">{{ wpSiteName }}</q-toolbar-title>
 
         <q-separator dark vertical inset />
 
         <q-toolbar-title>
           <div class="row items-center">
-            <q-icon :name="icon" size="md" class="q-mr-sm"></q-icon>
+            <q-icon name="mdi-at" size="md" class="q-mr-sm"></q-icon>
             title
           </div>
         </q-toolbar-title>
