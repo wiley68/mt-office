@@ -45,6 +45,7 @@ function mt_office_add_meta_admin($hook)
                 'root'  => esc_url_raw(rest_url()),
                 'nonce' => wp_create_nonce('mt_office_rest'),
                 'siteName' => get_bloginfo('name'),
+                'pluginName' => 'MT Office',
             )
         );
     }

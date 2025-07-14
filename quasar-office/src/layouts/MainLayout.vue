@@ -1,9 +1,12 @@
 <script setup>
 import { onMounted, ref } from 'vue'
+import { useRoute } from 'vue-router'
 
+const route = useRoute()
 const leftDrawerOpen = ref(false)
 const isExpandedNomenklature = ref(false)
 const wpSiteName = ref('')
+const wpPluginName = ref('')
 
 function toggleLeftDrawer() {
   leftDrawerOpen.value = !leftDrawerOpen.value
@@ -12,6 +15,7 @@ function toggleLeftDrawer() {
 onMounted(() => {
   if (typeof window.mt_office_rest !== 'undefined') {
     wpSiteName.value = window.mt_office_rest.siteName
+    wpPluginName.value = window.mt_office_rest.pluginName
   }
 })
 </script>
@@ -30,8 +34,8 @@ onMounted(() => {
 
         <q-toolbar-title>
           <div class="row items-center">
-            <q-icon name="mdi-at" size="md" class="q-mr-sm"></q-icon>
-            title
+            <q-icon :name="route.meta.icon" size="md" class="q-mr-sm"></q-icon>
+            {{ wpPluginName }} - {{ route.meta.title || 'Dashboard' }}
           </div>
         </q-toolbar-title>
 
