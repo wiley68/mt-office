@@ -35,7 +35,7 @@ onMounted(() => {
         <q-toolbar-title>
           <div class="row items-center">
             <q-icon :name="route.meta.icon" size="md" class="q-mr-sm"></q-icon>
-            {{ wpPluginName }} - {{ route.meta.title || 'Dashboard' }}
+            {{ wpPluginName }} - {{ $t(route.meta.title || 'Dashboard') }}
           </div>
         </q-toolbar-title>
 
