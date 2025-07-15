@@ -1,10 +1,10 @@
 <script setup>
 import { onMounted, ref } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 
 const route = useRoute()
+const router = useRouter()
 const leftDrawerOpen = ref(false)
-const isExpandedNomenklature = ref(false)
 const wpSiteName = ref('')
 const wpPluginName = ref('')
 const wpPluginVersion = ref('')
@@ -15,7 +15,12 @@ const wpUser = ref({
 })
 const wpWordPressVersion = ref('')
 
-function toggleLeftDrawer() {
+const getMetaByRouteName = (name) => {
+  const route = router.getRoutes().find((r) => r.name === name)
+  return route?.meta || {}
+}
+
+const toggleLeftDrawer = () => {
   leftDrawerOpen.value = !leftDrawerOpen.value
 }
 
@@ -47,7 +52,7 @@ onMounted(() => {
         <q-toolbar-title>
           <div class="row items-center">
             <q-icon :name="route.meta.icon" size="md" class="q-mr-sm"></q-icon>
-            {{ wpPluginName }} - {{ $t(route.meta.title || 'Dashboard') }}
+            {{ wpPluginName }} - {{ $t(route.meta.title) }}
           </div>
         </q-toolbar-title>
 
@@ -80,34 +85,33 @@ onMounted(() => {
       <q-list class="full-height flex column">
         <q-item
           clickable
+          :to="{ name: 'dashboard' }"
           v-close-popup
-          :active="true"
+          :active="route.name === 'dashboard'"
           class="text-primary"
           active-class="bg-blue-1"
         >
           <q-item-section avatar>
             <q-icon color="primary" name="mdi-view-dashboard-outline" />
           </q-item-section>
-          <q-item-section>Табло</q-item-section>
+          <q-item-section>{{ $t(getMetaByRouteName('dashboard').title) }}</q-item-section>
         </q-item>
 
         <q-separator />
 
-        <q-expansion-item
-          v-model="isExpandedNomenklature"
-          group="nomenklature"
-          icon="mdi-folder-table-outline"
-          label="Номенклатури"
-          expand-icon-class="text-primary"
-          header-class="text-primary"
+        <q-item
+          clickable
+          :to="{ name: 'tasks' }"
+          v-close-popup
+          :active="route.name === 'tasks'"
+          class="text-primary"
+          active-class="bg-blue-1"
         >
-          <q-item clickable class="text-secondary" active-class="bg-blue-1" :active="true">
-            <q-item-section avatar>
-              <q-icon color="secondary" name="mdi-home-city-outline" />
-            </q-item-section>
-            <q-item-section>Населени места</q-item-section>
-          </q-item>
-        </q-expansion-item>
+          <q-item-section avatar>
+            <q-icon color="primary" name="mdi-calendar-check" />
+          </q-item-section>
+          <q-item-section>{{ $t('Tasks') }}</q-item-section>
+        </q-item>
 
         <q-separator />
 
