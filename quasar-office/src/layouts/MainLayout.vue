@@ -7,6 +7,13 @@ const leftDrawerOpen = ref(false)
 const isExpandedNomenklature = ref(false)
 const wpSiteName = ref('')
 const wpPluginName = ref('')
+const wpPluginVersion = ref('')
+const wpUser = ref({
+  id: 0,
+  name: '',
+  email: '',
+})
+const wpWordPressVersion = ref('')
 
 function toggleLeftDrawer() {
   leftDrawerOpen.value = !leftDrawerOpen.value
@@ -16,6 +23,11 @@ onMounted(() => {
   if (typeof window.mt_office_rest !== 'undefined') {
     wpSiteName.value = window.mt_office_rest.siteName
     wpPluginName.value = window.mt_office_rest.pluginName
+    wpPluginVersion.value = window.mt_office_rest.pluginVersion
+    wpUser.value.id = window.mt_office_rest.user.id
+    wpUser.value.name = window.mt_office_rest.user.name
+    wpUser.value.email = window.mt_office_rest.user.email
+    wpWordPressVersion.value = window.mt_office_rest.wordPressVersion
   }
 })
 </script>
@@ -41,13 +53,23 @@ onMounted(() => {
 
         <q-separator dark vertical inset />
 
-        <q-btn-dropdown stretch flat label="5555555">
+        <q-btn-dropdown stretch flat :label="wpUser.name" class="q-ml-auto">
           <q-list style="min-width: 100px">
-            <q-item clickable v-close-popup>
+            <q-item>
+              <q-item-section class="select-none">{{ wpUser.email }}</q-item-section>
+            </q-item>
+            <q-separator />
+            <q-item
+              clickable
+              tag="a"
+              href="/wp-admin/admin.php?page=mt-office-overview"
+              class="text-negative"
+              v-close-popup
+            >
               <q-item-section avatar>
                 <q-icon color="negative" name="mdi-close" />
               </q-item-section>
-              <q-item-section>Изход</q-item-section>
+              <q-item-section>{{ $t('Exit') }}</q-item-section>
             </q-item>
           </q-list>
         </q-btn-dropdown>
@@ -102,7 +124,7 @@ onMounted(() => {
           <q-item-section avatar>
             <q-icon color="negative" name="close" />
           </q-item-section>
-          <q-item-section>Back to Overview</q-item-section>
+          <q-item-section>{{ $t('Exit') }}</q-item-section>
         </q-item>
       </q-list>
     </q-drawer>
@@ -113,13 +135,17 @@ onMounted(() => {
 
     <q-footer bordered class="bg-grey-2 text-grey-10 q-custom-toolbar">
       <q-toolbar class="select-none q-custom-toolbar">
-        <q-toolbar-title class="text-left text-subtitle1 text-title">1111111111</q-toolbar-title>
+        <q-toolbar-title class="text-left text-subtitle1 text-title"
+          >{{ wpPluginName }} - {{ wpPluginVersion }}</q-toolbar-title
+        >
         <q-separator vertical />
-        <q-toolbar-title class="text-left text-subtitle1 text-title">222222222222</q-toolbar-title>
+        <q-toolbar-title class="text-left text-subtitle1 text-title"
+          >WP - {{ wpWordPressVersion }}</q-toolbar-title
+        >
         <q-separator vertical />
-        <q-toolbar-title class="text-left text-subtitle1 text-title">333333333</q-toolbar-title>
-        <q-separator vertical />
-        <q-toolbar-title class="text-right text-subtitle1 text-grey-8">444444444</q-toolbar-title>
+        <q-toolbar-title class="text-right text-subtitle1 text-grey-8">{{
+          wpUser.email
+        }}</q-toolbar-title>
       </q-toolbar>
     </q-footer>
   </q-layout>
@@ -170,5 +196,9 @@ onMounted(() => {
 
 .q-field__messages > div[role='alert'] {
   color: #c10015;
+}
+
+.select-none {
+  user-select: none;
 }
 </style>

@@ -1,3 +1,4 @@
 export default {
-    Dashboard: 'Табло'
+    Dashboard: 'Табло',
+    Exit: 'Изход'
 }

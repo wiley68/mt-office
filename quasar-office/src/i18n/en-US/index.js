@@ -1,3 +1,4 @@
 export default {
-  Dashboard: 'Dashboard'
+  Dashboard: 'Dashboard',
+  Exit: 'Exit'
 }

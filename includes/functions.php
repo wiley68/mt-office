@@ -46,7 +46,14 @@ function mt_office_add_meta_admin($hook)
                 'nonce' => wp_create_nonce('mt_office_rest'),
                 'siteName' => get_bloginfo('name'),
                 'pluginName' => 'MT Office',
+                'pluginVersion' => MT_OFFICE_VERSION,
                 'locale' => determine_locale(),
+                'user' => array(
+                    'id' => get_current_user_id(),
+                    'name' => wp_get_current_user()->display_name,
+                    'email' => wp_get_current_user()->user_email,
+                ),
+                'wordPressVersion' => get_bloginfo('version'),
             )
         );
     }
