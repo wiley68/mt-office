@@ -17,6 +17,29 @@ function mt_office_load_textdomain()
     load_textdomain('mt-office', MT_OFFICE_PLUGIN_DIR . '/languages/' . $mofile);
 }
 
+function mt_office_create_tables()
+{
+    global $wpdb;
+    require_once ABSPATH . 'wp-admin/includes/upgrade.php';
+
+    $table_tasks_name = $wpdb->prefix . 'mt_office_tasks';
+    $charset_collate = $wpdb->get_charset_collate();
+
+    $sql_tasks = "CREATE TABLE $table_tasks_name (
+        `id` MEDIUMINT(9) NOT NULL AUTO_INCREMENT,
+        `name` VARCHAR(256) NOT NULL,
+        `value` TEXT NULL,
+        `status` TINYINT UNSIGNED NOT NULL DEFAULT 0,
+        `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+        PRIMARY KEY (id)
+    ) $charset_collate;";
+
+    dbDelta($sql_tasks);
+
+    update_option('mt_office_db_version', MT_OFFICE_DB_VERSION);
+}
+
 function mt_office_add_meta_admin($hook)
 {
     if ($hook === 'toplevel_page_mt-office-overview') {
@@ -42,7 +65,7 @@ function mt_office_add_meta_admin($hook)
             'mt-office-script',
             'mt_office_rest',
             array(
-                'root'  => esc_url_raw(rest_url()),
+                'root' => esc_url_raw(rest_url()),
                 'nonce' => wp_create_nonce('mt_office_rest'),
                 'siteName' => get_bloginfo('name'),
                 'pluginName' => 'MT Office',

@@ -16,8 +16,8 @@
  */
 
 // Exit if accessed directly.
-if (! defined('ABSPATH')) {
-	exit;
+if (!defined('ABSPATH')) {
+    exit;
 }
 
 /**
@@ -35,6 +35,7 @@ define('MT_OFFICE_CSS_URI', WP_CONTENT_URL . '/plugins/mt-office/css');
 define('MT_OFFICE_JS_URI', WP_CONTENT_URL . '/plugins/mt-office/js');
 define('MT_OFFICE_IMAGES_URI', WP_CONTENT_URL . '/plugins/mt-office/images');
 define('MT_OFFICE_VERSION', '1.0.0');
+define('MT_OFFICE_DB_VERSION', '1.0.1');
 
 /**
  * Include plugin core files.
@@ -49,9 +50,11 @@ require_once MT_OFFICE_INCLUDES_DIR . '/admin.php';
  * Initialize plugin hooks after plugins are loaded.
  */
 add_action('plugins_loaded', function () {
-	// Load plugin translations.
-	mt_office_load_textdomain();
-	// Register admin menu and enqueue admin scripts.
-	add_action('admin_menu', 'mt_office_admin_actions');
-	add_action('admin_enqueue_scripts', 'mt_office_add_meta_admin');
+    // Load plugin translations.
+    mt_office_load_textdomain();
+    // Loads the Borica payment gateway class for WooCommerce
+    mt_office_create_tables();
+    // Register admin menu and enqueue admin scripts.
+    add_action('admin_menu', 'mt_office_admin_actions');
+    add_action('admin_enqueue_scripts', 'mt_office_add_meta_admin');
 });
