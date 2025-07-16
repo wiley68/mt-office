@@ -123,7 +123,7 @@ onMounted(() => {
           clickable
           tag="a"
           href="/wp-admin/admin.php?page=mt-office-overview"
-          class="text-negative"
+          class="text-negative item-exit"
         >
           <q-item-section avatar>
             <q-icon color="negative" name="close" />
@@ -159,7 +159,7 @@ onMounted(() => {
 .page-container {
   display: flex;
   flex-direction: column;
-  height: calc(100vh - 80px);
+  height: calc(100vh - 82px);
   overflow-y: auto;
 }
 
@@ -211,5 +211,9 @@ onMounted(() => {
 
 .select-none {
   user-select: none;
+}
+
+.item-exit {
+  height: 50px;
 }
 </style>

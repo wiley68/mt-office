@@ -1,5 +1,6 @@
 export default {
     Dashboard: 'Табло',
     Exit: 'Изход',
-    Tasks: 'Задачи'
+    Tasks: 'Задачи',
+    'New task': 'Нова задача'
 }

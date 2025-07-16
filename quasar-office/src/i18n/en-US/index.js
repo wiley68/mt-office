@@ -1,5 +1,6 @@
 export default {
   Dashboard: 'Dashboard',
   Exit: 'Exit',
-  Tasks: 'Tasks'
+  Tasks: 'Tasks',
+  'New task': 'New task'
 }
