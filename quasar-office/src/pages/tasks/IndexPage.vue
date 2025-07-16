@@ -1,14 +1,10 @@
 <template>
-  <div
-    class="column justify-center items-center no-wrap"
-    style="height: calc(100vh - 84px); overflow-y: auto"
-  >
-    <q-card class="my-card">
-      <q-card-section
-        ><h1>{{ $t('Tasks') }}</h1></q-card-section
-      >
-    </q-card>
-  </div>
+  <q-page class="q-pa-none">
+    <div class="page-container">
+      <div class="body-panel"></div>
+      <div class="footer-panel"></div>
+    </div>
+  </q-page>
 </template>
 
 <script setup>

@@ -133,7 +133,7 @@ onMounted(() => {
       </q-list>
     </q-drawer>
 
-    <q-page-container style="padding-top: 28px; padding-left: 300px; padding-bottom: 31px">
+    <q-page-container style="padding-top: 20px">
       <router-view></router-view>
     </q-page-container>
 
@@ -156,6 +156,13 @@ onMounted(() => {
 </template>
 
 <style>
+.page-container {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 80px);
+  overflow-y: auto;
+}
+
 .q-custom-toolbar {
   min-height: 30px !important;
 }
