@@ -66,7 +66,7 @@ function mt_office_add_meta_admin($hook)
             'mt_office_rest',
             array(
                 'root' => esc_url_raw(rest_url()),
-                'nonce' => wp_create_nonce('mt_office_rest'),
+                'nonce' => wp_create_nonce('wp_rest'),
                 'siteName' => get_bloginfo('name'),
                 'pluginName' => 'MT Office',
                 'pluginVersion' => MT_OFFICE_VERSION,
@@ -83,4 +83,24 @@ function mt_office_add_meta_admin($hook)
 
     if ($hook === 'mt-office_page_mt-office-settings') {
     }
+}
+
+add_action('rest_api_init', function () {
+    register_rest_route('mt-office/v1', '/tasks', [
+        'methods' => 'GET',
+        'callback' => 'mt_office_get_tasks',
+        'permission_callback' => function () {
+            return current_user_can('manage_options');
+        }
+    ]);
+});
+
+function mt_office_get_tasks()
+{
+    global $wpdb;
+    $table = $wpdb->prefix . 'mt_office_tasks';
+
+    $results = $wpdb->get_results("SELECT * FROM $table ORDER BY created_at DESC", ARRAY_A);
+
+    return rest_ensure_response($results);
 }
