@@ -45,7 +45,7 @@ onMounted(async () => {
           color="primary"
           :label="$t('New task')"
           icon="mdi-file-document-plus-outline"
-          :to="{ name: 'dashboard' }"
+          :to="{ name: 'task-create' }"
         />
       </div>
     </div>
