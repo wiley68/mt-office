@@ -30,8 +30,7 @@ const submit = async () => {
       },
     )
 
-    // Успешно създадена задача
-    router.push({ name: 'tasks' }) // или 'dashboard' според твоя рут
+    router.push({ name: 'tasks' })
   } catch (err) {
     error.value = 'Грешка при запис.'
     console.error(err)
@@ -49,7 +48,7 @@ const submit = async () => {
           <div class="column flex-grow flex-center">
             <q-card class="q-pa-md full-width">
               <q-form class="q-gutter-md">
-                <q-input v-model="text" label="Standard" hint="fgddsfgdfgh" />
+                <q-input v-model="name" :label="$t('Task')" :hint="$t('Task name')" autofocus />
                 <q-input
                   v-model="value"
                   label="Стойност"

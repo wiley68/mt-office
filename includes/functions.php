@@ -114,6 +114,24 @@ add_action('rest_api_init', function () {
             return current_user_can('manage_options');
         }
     ]);
+
+    register_rest_route('mt-office/v1', '/tasks', [
+        'methods'             => 'POST',
+        'callback'            => 'mt_office_create_task',
+        'permission_callback' => function () {
+            return current_user_can('manage_options');
+        },
+        'args' => [
+            'name' => [
+                'required' => true,
+                'type'     => 'string',
+            ],
+            'value' => [
+                'required' => false,
+                'type'     => 'string',
+            ],
+        ],
+    ]);
 });
 
 function mt_office_get_tasks()
@@ -124,4 +142,33 @@ function mt_office_get_tasks()
     $results = $wpdb->get_results("SELECT * FROM $table ORDER BY created_at DESC", ARRAY_A);
 
     return rest_ensure_response($results);
+}
+
+function mt_office_create_task($request)
+{
+    global $wpdb;
+
+    $name  = sanitize_text_field($request->get_param('name'));
+    $value = sanitize_textarea_field($request->get_param('value'));
+
+    $table = $wpdb->prefix . 'mt_office_tasks';
+
+    $result = $wpdb->insert($table, [
+        'name'       => $name,
+        'value'      => $value,
+        'status'     => 0,
+        'created_at' => current_time('mysql'),
+        'updated_at' => current_time('mysql'),
+    ]);
+
+    if ($result === false) {
+        return new WP_Error('db_insert_error', 'Could not insert task.', ['status' => 500]);
+    }
+
+    return rest_ensure_response([
+        'id'    => $wpdb->insert_id,
+        'name'  => $name,
+        'value' => $value,
+        'status' => 0,
+    ]);
 }
