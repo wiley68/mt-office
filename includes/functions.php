@@ -53,6 +53,27 @@ function mt_office_add_meta_admin($hook)
     }
 
     if ($hook === 'mt-office_page_mt-office') {
+        wp_dequeue_style('wp-admin');
+        wp_dequeue_style('common');
+        wp_dequeue_style('admin-menu');
+        wp_dequeue_style('dashicons');
+        wp_dequeue_style('buttons');
+        wp_dequeue_style('forms');
+        wp_dequeue_style('wp-auth-check');
+        wp_dequeue_style('editor-buttons');
+        wp_dequeue_style('site-health');
+        wp_dequeue_style('revisions');
+        wp_dequeue_style('colors');
+
+        wp_dequeue_script('jquery');
+        wp_dequeue_script('utils');
+        wp_dequeue_script('wp-util');
+        wp_dequeue_script('common');
+        wp_dequeue_script('admin-bar');
+        wp_dequeue_script('heartbeat');
+        wp_dequeue_script('wp-auth-check');
+        wp_dequeue_script('site-health');
+
         wp_enqueue_script(
             'mt-office-script',
             plugins_url('../quasar-office/dist/spa/assets/index.js', __FILE__),

@@ -123,7 +123,7 @@ onMounted(() => {
           clickable
           tag="a"
           href="/wp-admin/admin.php?page=mt-office-overview"
-          class="text-negative item-exit"
+          class="text-negative"
         >
           <q-item-section avatar>
             <q-icon color="negative" name="close" />
@@ -133,7 +133,7 @@ onMounted(() => {
       </q-list>
     </q-drawer>
 
-    <q-page-container style="padding-top: 20px">
+    <q-page-container>
       <router-view></router-view>
     </q-page-container>
 
@@ -211,9 +211,5 @@ onMounted(() => {
 
 .select-none {
   user-select: none;
-}
-
-.item-exit {
-  height: 50px;
 }
 </style>
