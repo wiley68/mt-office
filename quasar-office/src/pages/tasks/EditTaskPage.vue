@@ -36,7 +36,7 @@ async function fetchTask() {
     })
     form.value.name.param = response.data.name || ''
     form.value.value.param = response.data.value || ''
-    form.value.status.param = !!response.data.status
+    form.value.status.param = parseInt(response.data.status) !== 0
   } catch (err) {
     if (err.response.data.code === 'name') {
       form.value.name.error = err.response.data.message
@@ -127,7 +127,7 @@ onMounted(fetchTask)
           flat
           :label="$t('Tasks')"
           icon="mdi-menu-left"
-          @click="router.back()"
+          :to="{ name: 'tasks' }"
         />
 
         <q-btn

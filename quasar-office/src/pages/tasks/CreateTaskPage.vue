@@ -22,14 +22,13 @@ const form = ref({
   },
 })
 
-const loading = ref(false)
 const router = useRouter()
 
 const submit = async () => {
   clearForm()
 
   try {
-    await axios.post(
+    const response = await axios.post(
       `${window.mt_office_rest.root}mt-office/v1/tasks`,
       {
         name: form.value.name.param,
@@ -42,8 +41,7 @@ const submit = async () => {
         },
       },
     )
-
-    router.push({ name: 'tasks' })
+    router.push({ name: 'task-edit', params: { id: response.data.id } })
   } catch (err) {
     if (err.response.data.code === 'name') {
       form.value.name.error = err.response.data.message
@@ -109,7 +107,7 @@ const clearForm = () => {
           flat
           :label="$t('Tasks')"
           icon="mdi-menu-left"
-          @click="router.back()"
+          :to="{ name: 'tasks' }"
         />
 
         <q-btn
@@ -117,7 +115,7 @@ const clearForm = () => {
           :label="$t('Save')"
           icon="mdi-file-document-plus-outline"
           @click="submit"
-          :loading="loading"
+          :loading="form.loading"
         />
       </div>
     </div>
