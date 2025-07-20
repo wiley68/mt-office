@@ -87,6 +87,34 @@ const confirmDelete = (taskId) => {
     .onCancel(() => {})
     .onDismiss(() => {})
 }
+
+async function updateTask(task) {
+  try {
+    const response = await axios.put(
+      `${window.mt_office_rest.root}mt-office/v1/tasks/${task.id}`,
+      {
+        name: task.name,
+        value: task.value,
+        status: parseInt(task.status) === 0 ? true : false,
+      },
+      {
+        headers: {
+          'X-WP-Nonce': window.mt_office_rest.nonce,
+        },
+      },
+    )
+    if (response.data.success) {
+      $q.notify({ type: 'positive', message: response.data.message })
+      await fetchTasks()
+    }
+  } catch (err) {
+    $q.notify({
+      message: err.response.data.message,
+      icon: 'mdi-alert-circle-outline',
+      type: 'negative',
+    })
+  }
+}
 </script>
 
 <template>
@@ -97,6 +125,15 @@ const confirmDelete = (taskId) => {
           <q-table title="Задачи" :rows="rows" :columns="columns" row-key="id">
             <template v-slot:body-cell-actions="props">
               <q-td align="center" style="width: 120px">
+                <q-btn
+                  icon="mdi-check"
+                  color="secondary"
+                  :title="$t('Task status')"
+                  dense
+                  flat
+                  rounded
+                  @click.prevent="updateTask(props.row)"
+                />
                 <q-btn
                   icon="mdi-pencil-outline"
                   color="primary"

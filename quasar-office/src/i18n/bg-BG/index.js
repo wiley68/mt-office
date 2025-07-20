@@ -16,4 +16,5 @@ export default {
   'Do you want to delete the task?': 'Желаеш ли да изтриеш задачата?',
   Yes: 'Да',
   Cancel: 'Откажи',
+  'Task editing': 'Редактиране на задачи',
 }

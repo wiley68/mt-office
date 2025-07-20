@@ -16,4 +16,5 @@ export default {
   'Do you want to delete the task?': 'Do you want to delete the task?',
   Yes: 'Yes',
   Cancel: 'Cancel',
+  'Task editing': 'Task editing',
 }
