@@ -2,26 +2,39 @@
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import axios from 'axios'
+import { useQuasar } from 'quasar'
+const $q = useQuasar()
 
-const name = ref('')
-const value = ref('')
-const status = ref(0)
+const form = ref({
+  error: '',
+  loading: false,
+  name: {
+    param: '',
+    error: '',
+  },
+  value: {
+    param: '',
+    error: '',
+  },
+  status: {
+    param: 0,
+    error: '',
+  },
+})
 
 const loading = ref(false)
-const error = ref('')
 const router = useRouter()
 
 const submit = async () => {
-  error.value = ''
-  loading.value = true
+  clearForm()
 
   try {
     await axios.post(
       `${window.mt_office_rest.root}mt-office/v1/tasks`,
       {
-        name: name.value,
-        value: value.value,
-        status: status.value,
+        name: form.value.name.param,
+        value: form.value.value.param,
+        status: form.value.status.param,
       },
       {
         headers: {
@@ -32,11 +45,28 @@ const submit = async () => {
 
     router.push({ name: 'tasks' })
   } catch (err) {
-    error.value = 'Грешка при запис.'
-    console.error(err)
+    if (err.response.data.code === 'name') {
+      form.value.name.error = err.response.data.message
+    }
+    $q.notify({
+      message: err.response.data.message,
+      icon: 'mdi-alert-circle-outline',
+      type: 'negative',
+    })
   } finally {
-    loading.value = false
+    form.value.loading = false
   }
+}
+
+const clearForm = () => {
+  form.value.error = ''
+  form.value.loading = false
+  form.value.name.param = ''
+  form.value.name.error = ''
+  form.value.value.param = ''
+  form.value.value.error = ''
+  form.value.status.param = 0
+  form.value.status.error = ''
 }
 </script>
 
@@ -48,7 +78,14 @@ const submit = async () => {
           <div class="column flex-grow flex-center">
             <q-card class="q-pa-md full-width">
               <q-form class="q-gutter-md">
-                <q-input v-model="name" :label="$t('Task')" :hint="$t('Task name')" autofocus />
+                <q-input
+                  v-model="name"
+                  :label="$t('Task')"
+                  :hint="$t('Task name')"
+                  autofocus
+                  :error="form.name.error !== ''"
+                  :error-message="form.name.error"
+                />
                 <q-input
                   v-model="value"
                   label="Стойност"

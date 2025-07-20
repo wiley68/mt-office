@@ -130,6 +130,11 @@ add_action('rest_api_init', function () {
                 'required' => false,
                 'type'     => 'string',
             ],
+            'status' => [
+                'required' => false,
+                'type'     => 'boolean',
+                'sanitize_callback' => 'rest_sanitize_boolean',
+            ],
         ],
     ]);
 });
@@ -150,13 +155,23 @@ function mt_office_create_task($request)
 
     $name  = sanitize_text_field($request->get_param('name'));
     $value = sanitize_textarea_field($request->get_param('value'));
+    $status = rest_sanitize_boolean($request->get_param('status'));
+
+
+    if (empty($name)) {
+        return new WP_Error(
+            'name',
+            __('The task name is required.', 'mt-office'),
+            ['status' => 400]
+        );
+    }
 
     $table = $wpdb->prefix . 'mt_office_tasks';
 
     $result = $wpdb->insert($table, [
         'name'       => $name,
         'value'      => $value,
-        'status'     => 0,
+        'status'     => $status,
         'created_at' => current_time('mysql'),
         'updated_at' => current_time('mysql'),
     ]);
