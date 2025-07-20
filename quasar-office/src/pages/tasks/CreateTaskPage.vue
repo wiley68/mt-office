@@ -17,7 +17,7 @@ const form = ref({
     error: '',
   },
   status: {
-    param: 0,
+    param: false,
     error: '',
   },
 })
@@ -61,11 +61,8 @@ const submit = async () => {
 const clearForm = () => {
   form.value.error = ''
   form.value.loading = false
-  form.value.name.param = ''
   form.value.name.error = ''
-  form.value.value.param = ''
   form.value.value.error = ''
-  form.value.status.param = 0
   form.value.status.error = ''
 }
 </script>
@@ -74,45 +71,46 @@ const clearForm = () => {
   <q-page class="q-pa-none">
     <div class="page-container">
       <div class="body-panel">
-        <div class="scrollable-content">
-          <div class="column flex-grow flex-center">
-            <q-card class="q-pa-md full-width">
-              <q-form class="q-gutter-md">
+        <div class="scrollable-content full-height column">
+          <q-card class="column q-pa-md full-width col">
+            <q-form class="q-gutter-md col column no-wrap">
+              <q-input
+                v-model="form.name.param"
+                :label="$t('Task')"
+                :hint="$t('Task name')"
+                autofocus
+                :error="form.name.error !== ''"
+                :error-message="form.name.error"
+              />
+
+              <div class="col textarea-wrapper">
                 <q-input
-                  v-model="name"
-                  :label="$t('Task')"
-                  :hint="$t('Task name')"
-                  autofocus
-                  :error="form.name.error !== ''"
-                  :error-message="form.name.error"
-                />
-                <q-input
-                  v-model="value"
-                  label="Стойност"
-                  hint="sdfgsdf"
+                  v-model="form.value.param"
+                  :label="$t('Desription')"
+                  :hint="$t('Task description')"
                   class="q-mb-md"
+                  autogrow
                   type="textarea"
                 />
-                <q-select
-                  v-model="status"
-                  :options="[
-                    { label: 'Неактивна', value: 0 },
-                    { label: 'Активна', value: 1 },
-                  ]"
-                  label="Статус"
-                  hint="szaxdgfsdf"
-                  emit-value
-                  map-options
-                />
-                <div v-if="error" class="text-negative q-mt-sm">{{ error }}</div>
-              </q-form>
-            </q-card>
-          </div>
+              </div>
+
+              <q-toggle
+                v-model="form.status.param"
+                :label="form.status.param === false ? $t('Active task') : $t('Completed task')"
+              />
+            </q-form>
+          </q-card>
         </div>
       </div>
 
       <div class="footer-panel">
-        <q-btn color="primary" flat label="Tasks" icon="mdi-menu-left" @click="router.back()" />
+        <q-btn
+          color="primary"
+          flat
+          :label="$t('Tasks')"
+          icon="mdi-menu-left"
+          @click="router.back()"
+        />
 
         <q-btn
           color="primary"
@@ -125,3 +123,12 @@ const clearForm = () => {
     </div>
   </q-page>
 </template>
+
+<style scoped>
+.textarea-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow-y: auto;
+}
+</style>

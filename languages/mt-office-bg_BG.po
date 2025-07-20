@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: MT Office\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-06-28 15:26+0000\n"
-"PO-Revision-Date: 2025-06-29 12:16+0000\n"
+"PO-Revision-Date: 2025-07-20 06:18+0000\n"
 "Last-Translator: Администратор\n"
 "Language-Team: Български\n"
 "Language: bg_BG\n"
@@ -27,10 +27,6 @@ msgstr "Авалон"
 #: includes/admin.php:79 includes/admin.php:103
 msgid "Avalon Ltd."
 msgstr "Авалон ООД"
-
-#: includes/admin.php:198
-msgid "Back to MT Office"
-msgstr "Обратно към MT Office"
 
 #: includes/admin.php:92 includes/admin.php:118
 msgid "Company"
@@ -86,9 +82,13 @@ msgstr "Прочетете още"
 msgid "Settings"
 msgstr "Настройки"
 
-#: includes/admin.php:225
+#: includes/admin.php:223
 msgid "The file mt_office_import_admin.php was not found!"
 msgstr "Файлът mt_office_import_admin.php не е намерен!"
+
+#: includes/functions.php:164
+msgid "The task name is required."
+msgstr "Името на задачата е задължително."
 
 #. Description of the plugin
 msgid "Utility for managing office activities in an e-store."
@@ -102,6 +102,6 @@ msgstr ""
 "Помощна програма за управление на офис дейности в електронен магазин на "
 "WordPress/WooCommerce."
 
-#: includes/admin.php:217
+#: includes/admin.php:215
 msgid "You do not have sufficient rights to access this page."
 msgstr "Нямате достатъчни права за достъп до тази страница."
