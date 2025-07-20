@@ -1,16 +1,27 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import axios from 'axios'
+import { useQuasar } from 'quasar'
+import { useI18n } from 'vue-i18n'
 
+const $q = useQuasar()
+const { t } = useI18n()
 const rows = ref([])
 const columns = [
   { name: 'id', label: 'ID', align: 'left', field: 'id' },
   { name: 'name', label: 'Име', align: 'left', field: 'name' },
   { name: 'status', label: 'Статус', align: 'left', field: 'status' },
   { name: 'created_at', label: 'Създадена на', align: 'left', field: 'created_at' },
+  {
+    name: 'actions',
+    label: 'Управление',
+    align: 'center',
+    field: 'actions',
+    sortable: false,
+  },
 ]
 
-onMounted(async () => {
+async function fetchTasks() {
   try {
     const response = await axios.get(`${window.mt_office_rest.root}mt-office/v1/tasks`, {
       headers: {
@@ -18,10 +29,64 @@ onMounted(async () => {
       },
     })
     rows.value = response.data
-  } catch (error) {
-    console.error('Error loading tasks:', error)
+  } catch (err) {
+    $q.notify({
+      message: err.response.data.message,
+      icon: 'mdi-alert-circle-outline',
+      type: 'negative',
+    })
   }
+}
+
+onMounted(async () => {
+  await fetchTasks()
 })
+
+async function deleteTask(taskId) {
+  try {
+    const response = await axios.delete(
+      `${window.mt_office_rest.root}mt-office/v1/tasks/${taskId}`,
+      {
+        headers: {
+          'X-WP-Nonce': window.mt_office_rest.nonce,
+        },
+      },
+    )
+    if (response.data.success) {
+      $q.notify({ type: 'positive', message: response.data.message })
+      await fetchTasks()
+    }
+  } catch (err) {
+    $q.notify({
+      message: err.response.data.message,
+      icon: 'mdi-alert-circle-outline',
+      type: 'negative',
+    })
+  }
+}
+
+const confirmDelete = (taskId) => {
+  $q.dialog({
+    title: t('Confirm'),
+    message: t('Do you want to delete the task?'),
+    persistent: true,
+    ok: {
+      label: t('Yes'),
+      color: 'primary',
+    },
+    cancel: {
+      label: t('Cancel'),
+      color: 'grey-1',
+      textColor: 'grey-10',
+      flat: true,
+    },
+  })
+    .onOk(() => {
+      deleteTask(taskId)
+    })
+    .onCancel(() => {})
+    .onDismiss(() => {})
+}
 </script>
 
 <template>
@@ -29,7 +94,30 @@ onMounted(async () => {
     <div class="page-container">
       <div class="body-panel">
         <div class="scrollable-content">
-          <q-table title="Задачи" :rows="rows" :columns="columns" row-key="id" />
+          <q-table title="Задачи" :rows="rows" :columns="columns" row-key="id">
+            <template v-slot:body-cell-actions="props">
+              <q-td align="center" style="width: 120px">
+                <q-btn
+                  icon="mdi-pencil-outline"
+                  color="primary"
+                  title="Промяна на задача"
+                  dense
+                  flat
+                  rounded
+                  :to="{ name: 'task-edit', params: { id: props.row.id } }"
+                />
+                <q-btn
+                  icon="mdi-delete-outline"
+                  color="negative"
+                  title="Изтриване на продукт"
+                  dense
+                  flat
+                  rounded
+                  @click.prevent="confirmDelete(props.row.id)"
+                />
+              </q-td>
+            </template>
+          </q-table>
         </div>
       </div>
       <div class="footer-panel">

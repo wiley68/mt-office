@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: MT Office\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-06-28 15:26+0000\n"
-"PO-Revision-Date: 2025-07-20 06:18+0000\n"
+"PO-Revision-Date: 2025-07-20 11:18+0000\n"
 "Last-Translator: Администратор\n"
 "Language-Team: Български\n"
 "Language: bg_BG\n"
@@ -14,6 +14,10 @@ msgstr ""
 "X-Generator: Loco https://localise.biz/\n"
 "X-Loco-Version: 2.8.0; wp-6.8.1; php-8.2.27\n"
 "X-Domain: mt-office"
+
+#: includes/functions.php:304
+msgid "An error occurred while deleting from the database."
+msgstr "Възникна грешка при изтриването от базата данни."
 
 #: includes/admin.php:136
 msgid "Announcing a new software version."
@@ -35,6 +39,10 @@ msgstr "Компания"
 #: includes/admin.php:95 includes/admin.php:121
 msgid "Dashboard"
 msgstr "Табло"
+
+#: includes/functions.php:285
+msgid "Database error during update"
+msgstr "Грешка в базата данни по време на актуализацията"
 
 #. Author URI of the plugin
 msgid "https://avalonbg.com"
@@ -82,11 +90,27 @@ msgstr "Прочетете още"
 msgid "Settings"
 msgstr "Настройки"
 
+#: includes/functions.php:268
+msgid "Task not found"
+msgstr "Задачата не е намерена"
+
+#: includes/functions.php:250 includes/functions.php:308
+msgid "Task not found."
+msgstr "Задачата не е намерена."
+
+#: includes/functions.php:290
+msgid "Task updated successfully"
+msgstr "Задачата е актуализирана успешно"
+
 #: includes/admin.php:223
 msgid "The file mt_office_import_admin.php was not found!"
 msgstr "Файлът mt_office_import_admin.php не е намерен!"
 
-#: includes/functions.php:164
+#: includes/functions.php:311
+msgid "The task has been deleted."
+msgstr "Задачата е изтрита."
+
+#: includes/functions.php:214
 msgid "The task name is required."
 msgstr "Името на задачата е задължително."
 

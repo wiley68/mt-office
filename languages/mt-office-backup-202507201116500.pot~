@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MT Office\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-20 11:18+0000\n"
+"POT-Creation-Date: 2025-07-20 06:17+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -15,10 +15,6 @@ msgstr ""
 "X-Generator: Loco https://localise.biz/\n"
 "X-Loco-Version: 2.8.0; wp-6.8.1; php-8.2.27\n"
 "X-Domain: mt-office"
-
-#: includes/functions.php:304
-msgid "An error occurred while deleting from the database."
-msgstr ""
 
 #: includes/admin.php:136
 msgid "Announcing a new software version."
@@ -39,10 +35,6 @@ msgstr ""
 
 #: includes/admin.php:95 includes/admin.php:121
 msgid "Dashboard"
-msgstr ""
-
-#: includes/functions.php:285
-msgid "Database error during update"
 msgstr ""
 
 #. Author URI of the plugin
@@ -91,27 +83,11 @@ msgstr ""
 msgid "Settings"
 msgstr ""
 
-#: includes/functions.php:268
-msgid "Task not found"
-msgstr ""
-
-#: includes/functions.php:250 includes/functions.php:308
-msgid "Task not found."
-msgstr ""
-
-#: includes/functions.php:290
-msgid "Task updated successfully"
-msgstr ""
-
 #: includes/admin.php:223
 msgid "The file mt_office_import_admin.php was not found!"
 msgstr ""
 
-#: includes/functions.php:311
-msgid "The task has been deleted."
-msgstr ""
-
-#: includes/functions.php:214
+#: includes/functions.php:164
 msgid "The task name is required."
 msgstr ""
 

@@ -27,6 +27,15 @@ const routes = [
         component: () => import('pages/tasks/CreateTaskPage.vue'),
         meta: { title: 'Create task', icon: 'mdi-plus' },
       },
+      {
+        path: '/tasks/:id/edit',
+        name: 'task-edit',
+        component: () => import('pages/tasks/EditTaskPage.vue'),
+        meta: {
+          title: 'Task editing',
+          icon: 'mdi-pencil',
+        },
+      },
     ],
   },
 

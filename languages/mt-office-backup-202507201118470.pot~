@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MT Office\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-20 11:18+0000\n"
+"POT-Creation-Date: 2025-07-20 11:16+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -95,7 +95,7 @@ msgstr ""
 msgid "Task not found"
 msgstr ""
 
-#: includes/functions.php:250 includes/functions.php:308
+#: includes/functions.php:308
 msgid "Task not found."
 msgstr ""
 
@@ -126,4 +126,8 @@ msgstr ""
 
 #: includes/admin.php:215
 msgid "You do not have sufficient rights to access this page."
+msgstr ""
+
+#: includes/functions.php:250
+msgid "Задачата не е намерена."
 msgstr ""

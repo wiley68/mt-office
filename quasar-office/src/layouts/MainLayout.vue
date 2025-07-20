@@ -103,7 +103,9 @@ onMounted(() => {
           clickable
           :to="{ name: 'tasks' }"
           v-close-popup
-          :active="route.name === 'tasks' || route.name === 'task-create'"
+          :active="
+            route.name === 'tasks' || route.name === 'task-create' || route.name === 'task-edit'
+          "
           class="text-primary"
           active-class="bg-blue-1"
         >

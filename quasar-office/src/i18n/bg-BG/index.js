@@ -11,4 +11,9 @@ export default {
   Save: 'Запиши',
   'Active task': 'Активна задача',
   'Completed task': 'Приключена задача',
+  'Task updated successfully': 'Задачата е актуализирана успешно',
+  Confirm: 'Потвърди',
+  'Do you want to delete the task?': 'Желаеш ли да изтриеш задачата?',
+  Yes: 'Да',
+  Cancel: 'Откажи',
 }

@@ -11,4 +11,9 @@ export default {
   Save: 'Save',
   'Active task': 'Active task',
   'Completed task': 'Completed task',
+  'Task updated successfully': 'Task updated successfully',
+  Confirm: 'Confirm',
+  'Do you want to delete the task?': 'Do you want to delete the task?',
+  Yes: 'Yes',
+  Cancel: 'Cancel',
 }

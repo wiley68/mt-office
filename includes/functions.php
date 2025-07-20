@@ -137,6 +137,56 @@ add_action('rest_api_init', function () {
             ],
         ],
     ]);
+
+    register_rest_route('mt-office/v1', '/tasks/(?P<id>\d+)', [
+        'methods'             => 'GET',
+        'callback'            => 'mt_office_get_task',
+        'permission_callback' => function () {
+            return current_user_can('manage_options');
+        },
+        'args' => [
+            'id' => [
+                'required' => true,
+                'type'     => 'integer',
+            ],
+        ],
+    ]);
+
+    register_rest_route('mt-office/v1', '/tasks/(?P<id>\d+)', [
+        'methods'             => 'PUT',
+        'callback'            => 'mt_office_update_task',
+        'permission_callback' => function () {
+            return current_user_can('manage_options');
+        },
+        'args'                => [
+            'name' => [
+                'required' => true,
+                'type'     => 'string',
+            ],
+            'value' => [
+                'required' => false,
+                'type'     => 'string',
+            ],
+            'status' => [
+                'required' => false,
+                'type'     => 'boolean',
+            ],
+        ],
+    ]);
+
+    register_rest_route('mt-office/v1', '/tasks/(?P<id>\d+)', [
+        'methods'             => 'DELETE',
+        'callback'            => 'mt_office_delete_task',
+        'permission_callback' => function () {
+            return current_user_can('manage_options');
+        },
+        'args' => [
+            'id' => [
+                'required' => true,
+                'type'     => 'integer',
+            ],
+        ],
+    ]);
 });
 
 function mt_office_get_tasks()
@@ -186,4 +236,77 @@ function mt_office_create_task($request)
         'value' => $value,
         'status' => 0,
     ]);
+}
+
+function mt_office_get_task($request)
+{
+    global $wpdb;
+    $id = intval($request['id']);
+
+    $table = $wpdb->prefix . 'mt_office_tasks';
+    $task = $wpdb->get_row($wpdb->prepare("SELECT * FROM $table WHERE id = %d", $id), ARRAY_A);
+
+    if (!$task) {
+        return new WP_Error('task_not_found', __('Task not found.', 'mt-office'), ['status' => 404]);
+    }
+
+    return rest_ensure_response($task);
+}
+
+function mt_office_update_task(\WP_REST_Request $request)
+{
+    global $wpdb;
+    $table = $wpdb->prefix . 'mt_office_tasks';
+
+    $id     = (int) $request['id'];
+    $name   = sanitize_text_field($request['name']);
+    $value  = sanitize_textarea_field($request['value']);
+    $status = isset($request['status']) ? (int) (bool) $request['status'] : 0;
+
+    $exists = $wpdb->get_var($wpdb->prepare("SELECT COUNT(*) FROM $table WHERE id = %d", $id));
+    if (!$exists) {
+        return new WP_Error('task_not_found', __('Task not found', 'mt-office'), ['status' => 404]);
+    }
+
+    $updated = $wpdb->update(
+        $table,
+        [
+            'name'       => $name,
+            'value'      => $value,
+            'status'     => $status,
+            'updated_at' => current_time('mysql'),
+        ],
+        ['id' => $id],
+        ['%s', '%s', '%d', '%s'],
+        ['%d']
+    );
+
+    if ($updated === false) {
+        return new WP_Error('db_error', __('Database error during update', 'mt-office'), ['status' => 500]);
+    }
+
+    return rest_ensure_response([
+        'success' => true,
+        'message' => __('Task updated successfully', 'mt-office'),
+    ]);
+}
+
+function mt_office_delete_task($request)
+{
+    global $wpdb;
+
+    $id = intval($request['id']);
+    $table = $wpdb->prefix . 'mt_office_tasks';
+
+    $deleted = $wpdb->delete($table, ['id' => $id], ['%d']);
+
+    if ($deleted === false) {
+        return new WP_Error('db_error', __('An error occurred while deleting from the database.', 'mt-office'), ['status' => 500]);
+    }
+
+    if ($deleted === 0) {
+        return new WP_Error('not_found', __('Task not found.', 'mt-office'), ['status' => 404]);
+    }
+
+    return rest_ensure_response(['success' => true, 'message' => __('The task has been deleted.', 'mt-office')]);
 }
