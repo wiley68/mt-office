@@ -17,4 +17,5 @@ export default {
   Yes: 'Yes',
   Cancel: 'Cancel',
   'Task editing': 'Task editing',
+  'Task created successfully': 'Task created successfully',
 }

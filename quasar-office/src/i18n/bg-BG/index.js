@@ -17,4 +17,5 @@ export default {
   Yes: 'Да',
   Cancel: 'Откажи',
   'Task editing': 'Редактиране на задачи',
+  'Task created successfully': 'Задачата е създадена успешно',
 }

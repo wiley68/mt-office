@@ -4,6 +4,7 @@ import { useRouter } from 'vue-router'
 import axios from 'axios'
 import { useQuasar } from 'quasar'
 const $q = useQuasar()
+import { useI18n } from 'vue-i18n'
 
 const form = ref({
   error: '',
@@ -22,6 +23,7 @@ const form = ref({
   },
 })
 
+const { t } = useI18n()
 const router = useRouter()
 
 const submit = async () => {
@@ -41,6 +43,7 @@ const submit = async () => {
         },
       },
     )
+    $q.notify({ type: 'positive', message: t('Task created successfully') })
     router.push({ name: 'task-edit', params: { id: response.data.id } })
   } catch (err) {
     if (err.response.data.code === 'name') {

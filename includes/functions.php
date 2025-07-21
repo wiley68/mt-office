@@ -116,74 +116,74 @@ add_action('rest_api_init', function () {
     ]);
 
     register_rest_route('mt-office/v1', '/tasks', [
-        'methods'             => 'POST',
-        'callback'            => 'mt_office_create_task',
+        'methods' => 'POST',
+        'callback' => 'mt_office_create_task',
         'permission_callback' => function () {
             return current_user_can('manage_options');
         },
         'args' => [
             'name' => [
                 'required' => true,
-                'type'     => 'string',
+                'type' => 'string',
             ],
             'value' => [
                 'required' => false,
-                'type'     => 'string',
+                'type' => 'string',
             ],
             'status' => [
                 'required' => false,
-                'type'     => 'boolean',
+                'type' => 'boolean',
                 'sanitize_callback' => 'rest_sanitize_boolean',
             ],
         ],
     ]);
 
     register_rest_route('mt-office/v1', '/tasks/(?P<id>\d+)', [
-        'methods'             => 'GET',
-        'callback'            => 'mt_office_get_task',
+        'methods' => 'GET',
+        'callback' => 'mt_office_get_task',
         'permission_callback' => function () {
             return current_user_can('manage_options');
         },
         'args' => [
             'id' => [
                 'required' => true,
-                'type'     => 'integer',
+                'type' => 'integer',
             ],
         ],
     ]);
 
     register_rest_route('mt-office/v1', '/tasks/(?P<id>\d+)', [
-        'methods'             => 'PUT',
-        'callback'            => 'mt_office_update_task',
+        'methods' => 'PUT',
+        'callback' => 'mt_office_update_task',
         'permission_callback' => function () {
             return current_user_can('manage_options');
         },
-        'args'                => [
+        'args' => [
             'name' => [
                 'required' => true,
-                'type'     => 'string',
+                'type' => 'string',
             ],
             'value' => [
                 'required' => false,
-                'type'     => 'string',
+                'type' => 'string',
             ],
             'status' => [
                 'required' => false,
-                'type'     => 'boolean',
+                'type' => 'boolean',
             ],
         ],
     ]);
 
     register_rest_route('mt-office/v1', '/tasks/(?P<id>\d+)', [
-        'methods'             => 'DELETE',
-        'callback'            => 'mt_office_delete_task',
+        'methods' => 'DELETE',
+        'callback' => 'mt_office_delete_task',
         'permission_callback' => function () {
             return current_user_can('manage_options');
         },
         'args' => [
             'id' => [
                 'required' => true,
-                'type'     => 'integer',
+                'type' => 'integer',
             ],
         ],
     ]);
@@ -203,7 +203,7 @@ function mt_office_create_task($request)
 {
     global $wpdb;
 
-    $name  = sanitize_text_field($request->get_param('name'));
+    $name = sanitize_text_field($request->get_param('name'));
     $value = sanitize_textarea_field($request->get_param('value'));
     $status = rest_sanitize_boolean($request->get_param('status'));
 
@@ -219,9 +219,9 @@ function mt_office_create_task($request)
     $table = $wpdb->prefix . 'mt_office_tasks';
 
     $result = $wpdb->insert($table, [
-        'name'       => $name,
-        'value'      => $value,
-        'status'     => $status,
+        'name' => $name,
+        'value' => $value,
+        'status' => $status,
         'created_at' => current_time('mysql'),
         'updated_at' => current_time('mysql'),
     ]);
@@ -231,8 +231,8 @@ function mt_office_create_task($request)
     }
 
     return rest_ensure_response([
-        'id'    => $wpdb->insert_id,
-        'name'  => $name,
+        'id' => $wpdb->insert_id,
+        'name' => $name,
         'value' => $value,
         'status' => 0,
     ]);
@@ -258,9 +258,9 @@ function mt_office_update_task(\WP_REST_Request $request)
     global $wpdb;
     $table = $wpdb->prefix . 'mt_office_tasks';
 
-    $id     = (int) $request['id'];
-    $name   = sanitize_text_field($request['name']);
-    $value  = sanitize_textarea_field($request['value']);
+    $id = (int) $request['id'];
+    $name = sanitize_text_field($request['name']);
+    $value = sanitize_textarea_field($request['value']);
     $status = isset($request['status']) ? (int) (bool) $request['status'] : 0;
 
     $exists = $wpdb->get_var($wpdb->prepare("SELECT COUNT(*) FROM $table WHERE id = %d", $id));
@@ -271,9 +271,9 @@ function mt_office_update_task(\WP_REST_Request $request)
     $updated = $wpdb->update(
         $table,
         [
-            'name'       => $name,
-            'value'      => $value,
-            'status'     => $status,
+            'name' => $name,
+            'value' => $value,
+            'status' => $status,
             'updated_at' => current_time('mysql'),
         ],
         ['id' => $id],
