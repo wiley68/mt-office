@@ -25,4 +25,5 @@ export default {
   'Missing data': 'Липсващи данни',
   'No matching records found': 'Не са намерени съвпадащи записи',
   'Loading data...': 'Зареждане на данни...',
+  'Search...': 'Търсене...',
 }

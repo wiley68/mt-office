@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted, watch } from 'vue'
+import { ref, onMounted } from 'vue'
 import axios from 'axios'
 import { useQuasar } from 'quasar'
 import { useI18n } from 'vue-i18n'
@@ -47,12 +47,20 @@ const pagination = ref({
   rowsPerPage: 10,
   rowsNumber: 0,
 })
+const filter = ref('')
 
 onMounted(fetchTasks)
 
-watch(pagination, () => {
+const onRequest = (props) => {
+  pagination.value.page = props.pagination.page
+  pagination.value.rowsPerPage = props.pagination.rowsPerPage
   fetchTasks()
-})
+}
+
+const onFilterChange = () => {
+  pagination.value.page = 1
+  fetchTasks()
+}
 
 async function fetchTasks() {
   try {
@@ -63,6 +71,7 @@ async function fetchTasks() {
       params: {
         page: pagination.value.page,
         per_page: pagination.value.rowsPerPage,
+        search: filter.value,
       },
     })
     rows.value = response.data.data
@@ -162,7 +171,23 @@ async function updateTask(task) {
             :columns="columns"
             row-key="id"
             v-model:pagination="pagination"
+            :filter="filter"
+            @request="onRequest"
           >
+            <template v-slot:top-right>
+              <q-input
+                dense
+                debounce="300"
+                v-model="filter"
+                :placeholder="$t('Search...')"
+                class="q-ml-sm"
+                @update:model-value="onFilterChange"
+              >
+                <template v-slot:append>
+                  <q-icon name="search" />
+                </template>
+              </q-input>
+            </template>
             <template v-slot:body-cell-actions="props">
               <q-td align="center" style="width: 120px">
                 <q-btn

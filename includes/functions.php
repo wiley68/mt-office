@@ -202,29 +202,38 @@ add_action('rest_api_init', function () {
 function mt_office_get_tasks(WP_REST_Request $request)
 {
     global $wpdb;
-    $table = $wpdb->prefix . 'mt_office_tasks';
 
     $page = max(1, (int) $request->get_param('page'));
-    $per_page = min(100, max(1, (int) $request->get_param('per_page')));
+    $per_page = max(1, (int) $request->get_param('per_page'));
     $offset = ($page - 1) * $per_page;
+    $search = $request->get_param('search');
 
-    $results = $wpdb->get_results(
-        $wpdb->prepare(
-            "SELECT * FROM $table ORDER BY created_at DESC LIMIT %d OFFSET %d",
-            $per_page,
-            $offset
-        ),
-        ARRAY_A
+    $where = '1=1';
+    $params = [];
+
+    if (!empty($search)) {
+        $where .= " AND (name LIKE %s OR value LIKE %s)";
+        $search_term = '%' . $wpdb->esc_like($search) . '%';
+        $params[] = $search_term;
+        $params[] = $search_term;
+    }
+
+    $args = array_merge($params, [$per_page, $offset]);
+    $query = $wpdb->prepare(
+        "SELECT * FROM {$wpdb->prefix}mt_office_tasks WHERE $where ORDER BY id DESC LIMIT %d OFFSET %d",
+        ...$args
     );
+    $results = $wpdb->get_results($query, ARRAY_A);
 
-    $total = (int) $wpdb->get_var("SELECT COUNT(*) FROM $table");
+    $count_query = $wpdb->prepare(
+        "SELECT COUNT(*) FROM {$wpdb->prefix}mt_office_tasks WHERE $where",
+        ...$params
+    );
+    $total = (int) $wpdb->get_var($count_query);
 
     return rest_ensure_response([
         'data' => $results,
         'total' => $total,
-        'page' => $page,
-        'per_page' => $per_page,
-        'totalPages' => ceil($total / $per_page),
     ]);
 }
 

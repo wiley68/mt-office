@@ -25,4 +25,5 @@ export default {
   'Missing data': 'Missing data',
   'No matching records found': 'No matching records found',
   'Loading data...': 'Loading data...',
+  'Search...': 'Search...',
 }
