@@ -18,4 +18,11 @@ export default {
   Cancel: 'Cancel',
   'Task editing': 'Task editing',
   'Task created successfully': 'Task created successfully',
+  ID: 'ID',
+  Status: 'Status',
+  Actions: 'Actions',
+  'Entries per page': 'Entries per page',
+  'Missing data': 'Missing data',
+  'No matching records found': 'No matching records found',
+  'Loading data...': 'Loading data...',
 }

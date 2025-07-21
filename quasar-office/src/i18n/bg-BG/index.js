@@ -18,4 +18,11 @@ export default {
   Cancel: 'Откажи',
   'Task editing': 'Редактиране на задачи',
   'Task created successfully': 'Задачата е създадена успешно',
+  ID: 'ИД',
+  Status: 'Статус',
+  Actions: 'Управление',
+  'Entries per page': 'Записи на страница',
+  'Missing data': 'Липсващи данни',
+  'No matching records found': 'Не са намерени съвпадащи записи',
+  'Loading data...': 'Зареждане на данни...',
 }

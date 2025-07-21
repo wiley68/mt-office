@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, watch } from 'vue'
 import axios from 'axios'
 import { useQuasar } from 'quasar'
 import { useI18n } from 'vue-i18n'
@@ -7,19 +7,52 @@ import { useI18n } from 'vue-i18n'
 const $q = useQuasar()
 const { t } = useI18n()
 const rows = ref([])
+
 const columns = [
-  { name: 'id', label: 'ID', align: 'left', field: 'id' },
-  { name: 'name', label: 'Име', align: 'left', field: 'name' },
-  { name: 'status', label: 'Статус', align: 'left', field: 'status' },
-  { name: 'created_at', label: 'Създадена на', align: 'left', field: 'created_at' },
+  {
+    name: 'id',
+    required: true,
+    label: t('ID'),
+    align: 'left',
+    field: 'id',
+    style: 'width: 80px;',
+    sortable: true,
+  },
+  {
+    name: 'name',
+    label: t('Task name'),
+    align: 'left',
+    field: 'name',
+    sortable: true,
+  },
+  {
+    name: 'status',
+    label: t('Status'),
+    align: 'left',
+    field: 'status',
+    style: 'width: 120px;',
+    sortable: true,
+  },
   {
     name: 'actions',
-    label: 'Управление',
+    label: t('Actions'),
     align: 'center',
     field: 'actions',
     sortable: false,
   },
 ]
+
+const pagination = ref({
+  page: 1,
+  rowsPerPage: 10,
+  rowsNumber: 0,
+})
+
+onMounted(fetchTasks)
+
+watch(pagination, () => {
+  fetchTasks()
+})
 
 async function fetchTasks() {
   try {
@@ -27,20 +60,21 @@ async function fetchTasks() {
       headers: {
         'X-WP-Nonce': window.mt_office_rest.nonce,
       },
+      params: {
+        page: pagination.value.page,
+        per_page: pagination.value.rowsPerPage,
+      },
     })
-    rows.value = response.data
+    rows.value = response.data.data
+    pagination.value.rowsNumber = response.data.total
   } catch (err) {
     $q.notify({
-      message: err.response.data.message,
+      message: err.response?.data?.message,
       icon: 'mdi-alert-circle-outline',
       type: 'negative',
     })
   }
 }
-
-onMounted(async () => {
-  await fetchTasks()
-})
 
 async function deleteTask(taskId) {
   try {
@@ -53,12 +87,12 @@ async function deleteTask(taskId) {
       },
     )
     if (response.data.success) {
-      $q.notify({ type: 'positive', message: response.data.message })
+      $q.notify({ type: 'positive', message: response.data?.message })
       await fetchTasks()
     }
   } catch (err) {
     $q.notify({
-      message: err.response.data.message,
+      message: err.response?.data?.message,
       icon: 'mdi-alert-circle-outline',
       type: 'negative',
     })
@@ -104,12 +138,12 @@ async function updateTask(task) {
       },
     )
     if (response.data.success) {
-      $q.notify({ type: 'positive', message: response.data.message })
+      $q.notify({ type: 'positive', message: response.data?.message })
       await fetchTasks()
     }
   } catch (err) {
     $q.notify({
-      message: err.response.data.message,
+      message: err.response?.data?.message,
       icon: 'mdi-alert-circle-outline',
       type: 'negative',
     })
@@ -122,7 +156,13 @@ async function updateTask(task) {
     <div class="page-container">
       <div class="body-panel">
         <div class="scrollable-content">
-          <q-table title="Задачи" :rows="rows" :columns="columns" row-key="id">
+          <q-table
+            :title="$t('Tasks')"
+            :rows="rows"
+            :columns="columns"
+            row-key="id"
+            v-model:pagination="pagination"
+          >
             <template v-slot:body-cell-actions="props">
               <q-td align="center" style="width: 120px">
                 <q-btn

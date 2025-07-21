@@ -112,7 +112,17 @@ add_action('rest_api_init', function () {
         'callback' => 'mt_office_get_tasks',
         'permission_callback' => function () {
             return current_user_can('manage_options');
-        }
+        },
+        'args' => [
+            'page' => [
+                'type' => 'integer',
+                'default' => 1,
+            ],
+            'per_page' => [
+                'type' => 'integer',
+                'default' => 10,
+            ],
+        ],
     ]);
 
     register_rest_route('mt-office/v1', '/tasks', [
@@ -189,14 +199,33 @@ add_action('rest_api_init', function () {
     ]);
 });
 
-function mt_office_get_tasks()
+function mt_office_get_tasks(WP_REST_Request $request)
 {
     global $wpdb;
     $table = $wpdb->prefix . 'mt_office_tasks';
 
-    $results = $wpdb->get_results("SELECT * FROM $table ORDER BY created_at DESC", ARRAY_A);
+    $page = max(1, (int) $request->get_param('page'));
+    $per_page = min(100, max(1, (int) $request->get_param('per_page')));
+    $offset = ($page - 1) * $per_page;
 
-    return rest_ensure_response($results);
+    $results = $wpdb->get_results(
+        $wpdb->prepare(
+            "SELECT * FROM $table ORDER BY created_at DESC LIMIT %d OFFSET %d",
+            $per_page,
+            $offset
+        ),
+        ARRAY_A
+    );
+
+    $total = (int) $wpdb->get_var("SELECT COUNT(*) FROM $table");
+
+    return rest_ensure_response([
+        'data' => $results,
+        'total' => $total,
+        'page' => $page,
+        'per_page' => $per_page,
+        'totalPages' => ceil($total / $per_page),
+    ]);
 }
 
 function mt_office_create_task($request)
