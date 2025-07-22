@@ -223,3 +223,61 @@ function mt_office_admin_options()
         echo '<div class="error"><p>' . esc_html__('The file mt_office_import_admin.php was not found!', 'mt-office') . '</p></div>';
     }
 }
+
+function mt_office_handle_actions()
+{
+    global $wpdb;
+
+    $table_name = $wpdb->prefix . 'mt_office_tasks';
+
+    if (!isset($_POST['mt_office_action'])) {
+        return;
+    }
+
+    if ($_POST['mt_office_action'] === 'export' && check_admin_referer('mt_office_export')) {
+        $rows = $wpdb->get_results("SELECT * FROM $table_name", ARRAY_A);
+        if ($rows) {
+            $output = "TRUNCATE TABLE `$table_name`;\n";
+            foreach ($rows as $row) {
+                $columns = array_keys($row);
+                $values = array_map([$wpdb, 'escape'], array_values($row));
+                $values = array_map(fn($v) => "'" . esc_sql($v) . "'", $values);
+                $output .= "INSERT INTO `$table_name` (`" . implode('`,`', $columns) . "`) VALUES (" . implode(',', $values) . ");\n";
+            }
+
+            $filename = 'mt_office_export_' . date('Y-m-d_H-i-s') . '.sql';
+
+            header('Content-Type: application/sql');
+            header('Content-Disposition: attachment; filename="' . $filename . '"');
+            echo $output;
+            exit;
+        } else {
+            wp_die('Няма записи за експортиране.');
+        }
+    }
+
+    if ($_POST['mt_office_action'] === 'import' && check_admin_referer('mt_office_import')) {
+        if (!empty($_FILES['sql_file']['tmp_name'])) {
+            $sql = file_get_contents($_FILES['sql_file']['tmp_name']);
+
+            if (strpos($sql, $table_name) === false) {
+                wp_die('SQL файлът не съдържа очакваната таблица.');
+            }
+
+            $queries = array_filter(array_map('trim', explode(";\n", $sql)));
+
+            $wpdb->query("DELETE FROM $table_name");
+
+            foreach ($queries as $query) {
+                if (!empty($query)) {
+                    $wpdb->query($query);
+                }
+            }
+
+            wp_redirect(admin_url('admin.php?page=mt-office-settings&import=success'));
+            exit;
+        } else {
+            wp_die('Моля, изберете .sql файл.');
+        }
+    }
+}

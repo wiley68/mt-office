@@ -57,4 +57,6 @@ add_action('plugins_loaded', function () {
     // Register admin menu and enqueue admin scripts.
     add_action('admin_menu', 'mt_office_admin_actions');
     add_action('admin_enqueue_scripts', 'mt_office_add_meta_admin');
+
+    add_action('admin_init', 'mt_office_handle_actions');
 });
