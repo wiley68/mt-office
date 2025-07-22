@@ -207,6 +207,12 @@ function mt_office_get_tasks(WP_REST_Request $request)
     $per_page = max(1, (int) $request->get_param('per_page'));
     $offset = ($page - 1) * $per_page;
     $search = $request->get_param('search');
+    $sort_by = $request->get_param('sort_by');
+    $sort_desc = $request->get_param('sort_desc') === '1';
+
+    $allowed_sort_fields = ['id', 'name', 'status'];
+    $order_by = in_array($sort_by, $allowed_sort_fields) ? $sort_by : 'id';
+    $order_dir = $sort_desc ? 'DESC' : 'ASC';
 
     $where = '1=1';
     $params = [];
@@ -220,7 +226,10 @@ function mt_office_get_tasks(WP_REST_Request $request)
 
     $args = array_merge($params, [$per_page, $offset]);
     $query = $wpdb->prepare(
-        "SELECT * FROM {$wpdb->prefix}mt_office_tasks WHERE $where ORDER BY id DESC LIMIT %d OFFSET %d",
+        "SELECT * FROM {$wpdb->prefix}mt_office_tasks
+         WHERE $where
+         ORDER BY $order_by $order_dir
+         LIMIT %d OFFSET %d",
         ...$args
     );
     $results = $wpdb->get_results($query, ARRAY_A);

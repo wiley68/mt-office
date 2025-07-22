@@ -26,4 +26,6 @@ export default {
   'No matching records found': 'Не са намерени съвпадащи записи',
   'Loading data...': 'Зареждане на данни...',
   'Search...': 'Търсене...',
+  Active: 'Активна',
+  Completed: 'Приключена',
 }

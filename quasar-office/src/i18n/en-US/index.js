@@ -26,4 +26,6 @@ export default {
   'No matching records found': 'No matching records found',
   'Loading data...': 'Loading data...',
   'Search...': 'Search...',
+  Active: 'Active',
+  Completed: 'Completed',
 }

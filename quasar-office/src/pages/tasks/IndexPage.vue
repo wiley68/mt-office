@@ -15,7 +15,7 @@ const columns = [
     label: t('ID'),
     align: 'left',
     field: 'id',
-    style: 'width: 80px;',
+    style: 'width: 80px',
     sortable: true,
   },
   {
@@ -30,7 +30,7 @@ const columns = [
     label: t('Status'),
     align: 'left',
     field: 'status',
-    style: 'width: 120px;',
+    style: 'width: 120px',
     sortable: true,
   },
   {
@@ -38,6 +38,7 @@ const columns = [
     label: t('Actions'),
     align: 'center',
     field: 'actions',
+    style: 'width: 150px',
     sortable: false,
   },
 ]
@@ -46,6 +47,8 @@ const pagination = ref({
   page: 1,
   rowsPerPage: 10,
   rowsNumber: 0,
+  sortBy: 'id',
+  descending: true,
 })
 const filter = ref('')
 
@@ -54,6 +57,8 @@ onMounted(fetchTasks)
 const onRequest = (props) => {
   pagination.value.page = props.pagination.page
   pagination.value.rowsPerPage = props.pagination.rowsPerPage
+  pagination.value.sortBy = props.pagination.sortBy
+  pagination.value.descending = props.pagination.descending
   fetchTasks()
 }
 
@@ -72,6 +77,8 @@ async function fetchTasks() {
         page: pagination.value.page,
         per_page: pagination.value.rowsPerPage,
         search: filter.value,
+        sort_by: pagination.value.sortBy,
+        sort_desc: pagination.value.descending ? '1' : '0',
       },
     })
     rows.value = response.data.data
@@ -177,7 +184,7 @@ async function updateTask(task) {
             <template v-slot:top-right>
               <q-input
                 dense
-                debounce="300"
+                debounce="500"
                 v-model="filter"
                 :placeholder="$t('Search...')"
                 class="q-ml-sm"
@@ -188,36 +195,49 @@ async function updateTask(task) {
                 </template>
               </q-input>
             </template>
-            <template v-slot:body-cell-actions="props">
-              <q-td align="center" style="width: 120px">
-                <q-btn
-                  icon="mdi-check"
-                  color="secondary"
-                  :title="$t('Task status')"
-                  dense
-                  flat
-                  rounded
-                  @click.prevent="updateTask(props.row)"
-                />
-                <q-btn
-                  icon="mdi-pencil-outline"
-                  color="primary"
-                  title="Промяна на задача"
-                  dense
-                  flat
-                  rounded
-                  :to="{ name: 'task-edit', params: { id: props.row.id } }"
-                />
-                <q-btn
-                  icon="mdi-delete-outline"
-                  color="negative"
-                  title="Изтриване на продукт"
-                  dense
-                  flat
-                  rounded
-                  @click.prevent="confirmDelete(props.row.id)"
-                />
-              </q-td>
+            <template v-slot:body="props">
+              <q-tr
+                :props="props"
+                :class="parseInt(props.row.status) === 1 ? 'text-grey-5' : 'bg-blue-grey-1'"
+              >
+                <q-td v-for="col in props.cols" :key="col.name" :props="props">
+                  <div v-if="col.name === 'status'">
+                    {{ parseInt(props.row.status) === 0 ? $t('Active') : $t('Completed') }}
+                  </div>
+                  <div v-else-if="col.name === 'actions'">
+                    <q-btn
+                      icon="mdi-check"
+                      color="secondary"
+                      :title="$t('Task status')"
+                      dense
+                      flat
+                      rounded
+                      @click.prevent="updateTask(props.row)"
+                    />
+                    <q-btn
+                      icon="mdi-pencil-outline"
+                      color="primary"
+                      title="Промяна на задача"
+                      dense
+                      flat
+                      rounded
+                      :to="{ name: 'task-edit', params: { id: props.row.id } }"
+                    />
+                    <q-btn
+                      icon="mdi-delete-outline"
+                      color="negative"
+                      title="Изтриване на продукт"
+                      dense
+                      flat
+                      rounded
+                      @click.prevent="confirmDelete(props.row.id)"
+                    />
+                  </div>
+                  <div v-else>
+                    {{ props.row[col.name] }}
+                  </div>
+                </q-td>
+              </q-tr>
             </template>
           </q-table>
         </div>
